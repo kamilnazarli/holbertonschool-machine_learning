@@ -3,7 +3,6 @@
 This module takes a dataframe/
 and add some changes
 '''
-import pandas as pd
 
 
 def array(df):
