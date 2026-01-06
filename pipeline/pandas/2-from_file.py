@@ -13,4 +13,3 @@ def from_file(filename, delimiter):
     specific delimiter
     '''
     return pd.read_csv(filename, delimiter=delimiter)
-
