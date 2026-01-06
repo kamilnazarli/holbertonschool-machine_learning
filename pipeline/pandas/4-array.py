@@ -10,4 +10,4 @@ def array(df):
     This method shows columns in ndarray/
     format
     '''
-    return df.tail(10).to_numpy()
+    return df[['High', 'Close']].tail(10).to_numpy()
