@@ -13,5 +13,5 @@ def from_numpy(array):
     cols = []
     for i in range(26):
         cols.append(chr(start+i))
-    new_df = pd.DataFrame(array, columns = cols[:array.shape[1]])
+    new_df = pd.DataFrame(array, columns=cols[:array.shape[1]])
     return new_df
