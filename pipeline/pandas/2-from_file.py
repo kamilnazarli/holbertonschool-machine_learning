@@ -3,6 +3,7 @@
 This module loads data from a/
 specific file
 '''
+import pandas as pd
 
 
 def from_file(filename, delimiter):
