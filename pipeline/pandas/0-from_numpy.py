@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-# This module creates a method that converts array into dataframe
+'''This module creates a method that converts/
+array into dataframe in pandas
+'''
 import pandas as pd
 
 
