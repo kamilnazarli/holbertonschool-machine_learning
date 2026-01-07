@@ -3,7 +3,6 @@
 This module creates a
 slice function
 '''
-import pandas as pd
 
 
 def slice(df):
