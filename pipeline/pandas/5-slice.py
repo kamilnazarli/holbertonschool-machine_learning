@@ -10,4 +10,4 @@ def slice(df):
     this method accepts df as a dataframe
     and returns every 60th rows
     '''
-    return df[['High', 'Low', 'Close', 'Volume_BTC']].iloc[::60]
+    return df[['High', 'Low', 'Close', 'Volume_(BTC)']].iloc[::60]
