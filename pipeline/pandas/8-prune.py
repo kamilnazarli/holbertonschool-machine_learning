@@ -12,4 +12,3 @@ def prune(df):
     '''
     df.dropna(subset=['Close'], inplace=True)
     return df
-
