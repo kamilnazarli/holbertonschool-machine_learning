@@ -17,3 +17,4 @@ def fill(df):
         df.loc[i, 'Open'] = df.loc[i, 'Close']
 
     df[['Volume_(BTC)', 'Volume_(Currency)']].fillna(0)
+    return df
