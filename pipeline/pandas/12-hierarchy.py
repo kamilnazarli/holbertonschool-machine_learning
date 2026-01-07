@@ -7,7 +7,7 @@ import pandas as pd
 index = __import__('10-index').index
 
 
-def concat(df1, df2):
+def hierarchy(df1, df2):
     '''
     this function concatenates
     two dataframes
