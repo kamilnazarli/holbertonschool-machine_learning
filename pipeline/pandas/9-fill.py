@@ -6,6 +6,11 @@ that add some changes to dataframe
 
 
 def fill(df):
+    '''
+    this function drop
+    some columns, modify them
+    and return back
+    '''
     df.drop(columns=['Weighted_Price'], inplace=True)
     for i in df[df['Close'].isna()].index:
         df.loc[i, 'Close'] = df.loc[i-1, 'Close']
