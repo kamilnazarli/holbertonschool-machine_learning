@@ -17,5 +17,6 @@ def fill(df):
     for i in df[df['Open'].isna()].index:
         df.loc[i, 'Open'] = df.loc[i, 'Close']
 
-    df[['Volume_(BTC)', 'Volume_(Currency)']] = df[['Volume_(BTC)', 'Volume_(Currency)']].fillna(0)
+    df[['Volume_(BTC)', 'Volume_(Currency)']] = \
+df[['Volume_(BTC)', 'Volume_(Currency)']].fillna(0)
     return df
