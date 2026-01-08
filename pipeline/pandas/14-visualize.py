@@ -32,4 +32,4 @@ df.groupby(['Date']).agg(
     **{'Volume_(Currency)': ('Volume_(Currency)', 'sum')}
 
 )
-print(df)
+df.plot()
