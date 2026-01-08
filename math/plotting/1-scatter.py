@@ -5,6 +5,7 @@ Plotting
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def scatter():
     '''
     This methods shows
