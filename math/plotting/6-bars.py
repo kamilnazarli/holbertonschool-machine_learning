@@ -14,10 +14,10 @@ def bars():
     plt.title('Number of Fruit per Person')
     plt.ylabel('Quantity of Fruit')
     plt.ylim(0, 80)
+    ls1 = apples+bananas
+    ls2 = apples+bananas+oranges
     plt.bar(categories, apples, color='red', width=0.5)
     plt.bar(categories, bananas, bottom=apples, color='yellow', width=0.5)
-    plt.bar(categories, oranges, bottom=apples+bananas, \
-        color='#ff8000', width=0.5)
-    plt.bar(categories, peaches, bottom=apples+bananas+oranges,\
-        color='#ffe5b4', width=0.5)
+    plt.bar(categories, oranges, bottom=ls1, color='#ff8000', width=0.5)
+    plt.bar(categories, peaches, bottom=ls2, color='#ffe5b4', width=0.5)
     plt.legend(['apples', 'bananas', 'oranges', 'peaches'])
