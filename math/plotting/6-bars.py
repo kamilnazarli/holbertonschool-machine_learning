@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 def bars():
     '''to create bar(fruits)'''
     np.random.seed(5)
-    fruit = np.random.randint(0, 20, (4,3))
+    fruit = np.random.randint(0, 20, (4, 3))
     plt.figure(figsize=(6.4, 4.8))
     categories = ['Farrah', 'Fred', 'Felicia']
     apples, bananas, oranges, peaches = fruit[0], fruit[1], fruit[2], fruit[3]
