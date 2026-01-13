@@ -8,7 +8,7 @@ def poly_derivative(poly):
         return None
     if len(poly) == 1:
         return [0]
-    ls=[]
+    ls = []
     for i in range(len(poly)):
         if i-1 >= 0:
             ls.append(poly[i]*i)
