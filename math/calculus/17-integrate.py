@@ -11,7 +11,7 @@ def poly_integral(poly, C=0):
         if C == 0:
             return [0]
         else:
-            return [C, 0]
+            return [C]
     if len(poly) == 1:
         ls.append(poly[0])
         ls.insert(0, C)
