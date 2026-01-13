@@ -4,7 +4,7 @@
 
 def poly_integral(poly, C=0):
     ''' integration '''
-    if type(poly) is not list or len(poly) == 0:
+    if type(poly) is not list or len(poly) == 0 or C is None:
         return None
     ls = []
     if len(poly) == 1 and poly[0] == 0:
