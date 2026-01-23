@@ -17,7 +17,9 @@ def add_arrays(arr1, arr2):
     '''function2 documented'''
     shape1 = matrix_shape(arr1)
     shape2 = matrix_shape(arr2)
-    if shape1 != shape2:
+    if len(arr1) == 0 and len(arr2) == 0:
+        return None
+    elif shape1 != shape2:
         return None
     result = []
     for i in range(len(arr1)):
