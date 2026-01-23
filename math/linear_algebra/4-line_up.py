@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 '''module documented'''
+
+
 def matrix_shape(matrix):
     '''function1 documented'''
     shape = []
@@ -11,6 +13,7 @@ def matrix_shape(matrix):
         else:
             break
     return shape
+
 
 def add_arrays(arr1, arr2):
     '''function2 documented'''
