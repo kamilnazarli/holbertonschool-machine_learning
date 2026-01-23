@@ -3,6 +3,8 @@
 
 
 def matrix_transpose(matrix):
+    '''function documented'''
+
     new_matrix = []
     for col in range(len(matrix[0])):
         temp = []
