@@ -15,7 +15,7 @@ def matrix_shape(matrix):
 def add_arrays(arr1, arr2):
     '''function2 documented'''
     if len(arr1) == 0 and len(arr2) == 0:
-        return None
+        return []
     shape1 = matrix_shape(arr1)
     shape2 = matrix_shape(arr2)
     if shape1 != shape2:
