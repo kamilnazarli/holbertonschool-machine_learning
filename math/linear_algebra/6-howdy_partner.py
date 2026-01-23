@@ -4,6 +4,9 @@
 
 def cat_arrays(arr1, arr2):
     '''function documented'''
+    result = []
+    for i in arr1:
+        result.append(i)
     for i in arr2:
-        arr1.append(i)
-    return arr1
+        result.append(i)
+    return result
