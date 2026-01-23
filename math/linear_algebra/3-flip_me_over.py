@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+'''module documented'''
+
+
 def matrix_transpose(matrix):
     new_matrix = []
     for col in range(len(matrix[0])):
