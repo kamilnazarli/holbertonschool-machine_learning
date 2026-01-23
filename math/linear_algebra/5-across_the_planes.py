@@ -7,11 +7,11 @@ def matrix_shape(matrix):
     shape = []
     current = matrix
     while True:
-            if type(current) is list and len(current) > 0:
-                shape.append(len(current))
-                current = current[0]
-            else:
-                break
+        if type(current) is list and len(current) > 0:
+            shape.append(len(current))
+            current = current[0]
+        else:
+            break
     return shape
 
 
