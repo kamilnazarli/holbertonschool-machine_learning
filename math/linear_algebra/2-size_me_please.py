@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-import numpy as np
+'''module documented'''
+
 
 def matrix_shape(matrix):
-    return list(np.array(matrix).shape)
+    '''function documented'''
+    shape = []
+    current = matrix
+    while True:
+        if type(current) is list:
+            shape.append(len(current))
+            current = current[0]
+        else:
+            break
+    return shape
