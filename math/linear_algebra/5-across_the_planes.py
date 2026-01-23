@@ -8,8 +8,8 @@ def matrix_shape(matrix):
     current = matrix
     while True:
             if type(current) is list and len(current) > 0:
-                    shape.append(len(current))
-                    current = current[0]
+                shape.append(len(current))
+                current = current[0]
             else:
                 break
     return shape
@@ -26,5 +26,3 @@ def add_matrices2D(mat1, mat2):
             temp_s.append(mat1[row][col]+mat2[row][col])
         result.append(temp_s)
     return result
-
-
