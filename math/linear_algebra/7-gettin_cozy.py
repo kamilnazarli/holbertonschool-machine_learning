@@ -2,8 +2,22 @@
 '''module documented'''
 
 
+def matrix_shape(matrix):
+    '''function1 documented'''
+    shape = []
+    current = matrix
+    while True:
+        if type(current) is list and len(current) > 0:
+            shape.append(len(current))
+            current = current[0]
+        else:
+            break
+    return shape
+
 def cat_matrices2D(mat1, mat2, axis=0):
-    '''function documented'''
+    '''function2 documented'''
+    if matrix_shape(mat1) != matrix_shape(mat2):
+        return None
     result = mat1[::]
     if axis == 0:
         result += mat2
