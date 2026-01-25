@@ -16,8 +16,6 @@ def matrix_shape(matrix):
 
 def cat_matrices2D(mat1, mat2, axis=0):
     '''function2 documented'''
-    if matrix_shape(mat1) != matrix_shape(mat2):
-        return None
     result = mat1[::]
     if axis == 0:
         result += mat2
