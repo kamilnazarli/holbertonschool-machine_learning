@@ -1,0 +1,10 @@
+#!/usr/bin/env python3
+import numpy as np
+matrix = np.array([[1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12],
+                   [13, 14, 15, 16, 17, 18], [19, 20, 21, 22, 23, 24]])
+mat1 =  matrix[1:3]
+if matrix.shape[1] % 2 == 0:
+  mat2 =  matrix[:, matrix.shape[1]//2-1:matrix.shape[1]//2+1]
+else:
+  mat2 =  matrix[:, matrix.shape[1]//2:matrix.shape[1]//2+1]
+mat3 =  matrix[1:, 3:]
