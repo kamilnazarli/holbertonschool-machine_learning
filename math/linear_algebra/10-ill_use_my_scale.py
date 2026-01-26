@@ -3,5 +3,5 @@
 
 
 def np_shape(matrix):
-  '''function documented'''
-  return matrix.shape
+    '''function documented'''
+    return matrix.shape
