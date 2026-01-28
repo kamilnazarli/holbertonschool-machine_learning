@@ -15,15 +15,19 @@ def matrix_shape(matrix):
     return shape
 
 
-def add_matrices(arr1, arr2):
+def add_matrices(mat1, mat2):
     '''function2 documented'''
-    if len(arr1) == 0 and len(arr2) == 0:
+    if len(mat1) == 0 and len(mat2) == 0:
         return []
-    shape1 = matrix_shape(arr1)
-    shape2 = matrix_shape(arr2)
+    shape1 = matrix_shape(mat1)
+    shape2 = matrix_shape(mat2)
     if shape1 != shape2:
         return None
     result = []
-    for i in range(len(arr1)):
-        result.append(arr1[i]+arr2[i])
+    if len(matrix_shape(mat1)) == 1:
+        for i in range(len(mat1)):
+            result.append(mat1[i]+mat2[i])
+    else:
+        for i in range(len(mat1)):
+            result.append(add_matrices(mat1[i], mat2[i]))
     return result
