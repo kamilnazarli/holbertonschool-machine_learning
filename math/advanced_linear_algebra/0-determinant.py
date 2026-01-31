@@ -11,9 +11,6 @@ def check(ls):
     if type(ls) is not list:
         return False
 
-    if len(ls) == 0:
-        return False
-
     for row in ls:
         if type(row) is not list:
             return False
