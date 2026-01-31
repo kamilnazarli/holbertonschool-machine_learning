@@ -4,6 +4,8 @@ def check_shape(matrix):
     '''function1 documented'''
     if len(matrix) == 1 and len(matrix[0]) == 0:
         return True
+    if matrix == []:
+        return False
     return len(matrix)==len(matrix[0])
 
 def check(ls):
