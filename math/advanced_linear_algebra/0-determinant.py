@@ -21,12 +21,12 @@ def check(ls):
 
 def determinant(matrix):
     '''function3 documented'''
-    if not check_shape(matrix):
-        raise ValueError("matrix must be square matrix")
-    
     if not check(matrix):
         raise TypeError("matrix must be a list of lists")
     
+    if not check_shape(matrix):
+        raise ValueError("matrix must be square matrix")
+     
     A = [row[:] for row in matrix]
     rows = len(A)
     cols = len(A[0])
