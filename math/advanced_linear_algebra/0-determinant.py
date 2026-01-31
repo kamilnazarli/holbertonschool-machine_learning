@@ -24,6 +24,9 @@ def determinant(matrix):
     if not check(matrix):
         raise TypeError("matrix must be a list of lists")
     
+    if matrix == [[]]:
+        return 1
+    
     if not check_shape(matrix):
         raise ValueError("matrix must be a square matrix")
      
