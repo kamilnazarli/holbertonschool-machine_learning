@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 '''module documented'''
+
+
 def check_shape(matrix):
     '''function1 documented'''
-    if len(matrix) == 1 and len(matrix[0]) == 0:
-        return True
     if matrix == []:
         return False
-    return len(matrix)==len(matrix[0])
+    n = len(matrix)
+    for row in matrix:
+        if len(row) != n:
+            return False
+    return True
 
 def check(ls):
     '''function2 documented'''
