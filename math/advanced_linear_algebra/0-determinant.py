@@ -59,4 +59,4 @@ def determinant(matrix):
             if i == j:
                 det *= A[i][j]
     
-    return det
+    return int(det)
