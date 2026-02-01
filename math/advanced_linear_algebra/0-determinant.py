@@ -30,7 +30,7 @@ def determinant(matrix):
         raise TypeError("matrix must be a list of lists")
     
     if not check_shape(matrix):
-        raise ValueError("matrix must be square matrix")
+        raise ValueError("matrix must be a square matrix")
     
     n = len(matrix)
     A = [row[:] for row in matrix]
