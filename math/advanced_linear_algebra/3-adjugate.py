@@ -60,8 +60,8 @@ def cofactor(matrix):
     for i in range(n):
         for j in range(n):
             minor_matrix[i][j] = (-1) ** (i + j) * minor_matrix[i][j]
-    
     return minor_matrix
+
 
 def adjugate(matrix):
     '''adjugate matrix-
