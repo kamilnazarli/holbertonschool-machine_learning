@@ -1,59 +1,28 @@
 #!/usr/bin/env python3
-'''module documented'''
+"""
+Determinant of a matrix
+"""
 
 
-def check_shape(matrix):
-    '''function1 documented'''
-    n = len(matrix)
-    for row in matrix:
-        if len(row) != n:
-            return False
-    return True
-
-def check(ls):
-    '''function2 documented'''
-    if type(ls) is not list:
-        return False
-
-    if len(ls) == 0:
-        return False
-
-    for row in ls:
-        if type(row) is not list:
-            return False
-    return True
-
-
-def determinant(matrix):
+def determinant(mat):
     """
-    function3 documented
+    Calculation of determinant of a matrix
     """
-    if not check(matrix):
+    if (not isinstance(mat, list) or
+            any(not isinstance(row, list) for row in mat)):
         raise TypeError("matrix must be a list of lists")
-    
-    if not check_shape(matrix):
-        raise ValueError("matrix must be a square matrix")
-    
-    n = len(matrix)
-    A = [row[:] for row in matrix]
-    prev = 1
-    sign = 1
-
-    if A == [[]]:
+    if mat == [[]]:
         return 1
-    for k in range(n - 1):
-        if A[k][k] == 0:
-            for r in range(k + 1, n):
-                if A[r][k] != 0:
-                    A[k], A[r] = A[r], A[k]
-                    sign *= -1
-                    break
-            else:
-                return 0 
-        for i in range(k + 1, n):
-            for j in range(k + 1, n):
-                A[i][j] = (A[k][k] * A[i][j] - A[i][k] * A[k][j]) // prev
-            A[i][k] = 0
+    x = len(mat)
+    if any(len(row) != x for row in mat):
+        raise ValueError("matrix must be a square matrix")
+    if x == 1:
+        return mat[0][0]
+    if x == 2:
+        return mat[0][0] * mat[1][1] - mat[1][0] * mat[0][1]
 
-        prev = A[k][k]
-    return sign * A[n - 1][n - 1]
+    return sum(
+        (-1) ** k * mat[0][k] *
+        determinant([row[:k] + row[k + 1:] for row in mat[1:]])
+        for k in range(x)
+    )
