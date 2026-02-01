@@ -29,7 +29,8 @@ def minor(matrix):
     x = len(matrix)
     if any(len(row) != x for row in matrix):
         raise ValueError("matrix must be a non-empty square matrix")
-    
+    if x == 1:
+        return [[1]]
     minor = [[0 for _ in range(x)] for _ in range(x)]
     for i in range(x):
         for j in range(x):
@@ -37,7 +38,5 @@ def minor(matrix):
                 [matrix[m][n] for n in range(x) if n != j]
                 for m in range(x) if m != i]
             minor[i][j] = determinant(sub_matrix)
-    if minor == matrix:
-        return [[1]]
     
     return minor
