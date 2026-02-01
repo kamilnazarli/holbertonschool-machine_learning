@@ -77,5 +77,5 @@ def inverse(matrix):
     n = len(adj_form)
     for row in range(n):
         for col in range(n):
-            adj_form[row][col] = round(adj_form[row][col] * 1/determinant(matrix), 15)
+            adj_form[row][col] = adj_form[row][col] * 1/determinant(matrix)
     return adj_form
