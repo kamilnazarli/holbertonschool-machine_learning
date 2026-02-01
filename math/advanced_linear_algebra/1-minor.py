@@ -21,6 +21,7 @@ def determinant(mat):
         for k in range(x)
     )
 
+
 def minor(matrix):
     '''Minor dunction'''
     if (not isinstance(matrix, list) or
@@ -38,5 +39,4 @@ def minor(matrix):
                 [matrix[m][n] for n in range(x) if n != j]
                 for m in range(x) if m != i]
             minor[i][j] = determinant(sub_matrix)
-    
     return minor
