@@ -4,17 +4,16 @@
 
 def check_shape(matrix):
     '''function1 documented'''
-    if matrix == []:
-        return False
-    n = len(matrix)
-    for row in matrix:
-        if len(row) != n:
-            return False
-    return True
+    if len(matrix) == 1 and len(matrix[0]) == 0:
+        return True
+    return len(matrix)==len(matrix[0])
 
 def check(ls):
     '''function2 documented'''
     if type(ls) is not list:
+        return False
+
+    if len(ls) == 0:
         return False
 
     for row in ls:
@@ -22,41 +21,37 @@ def check(ls):
             return False
     return True
 
+
 def determinant(matrix):
-    '''function3 documented'''
+    """
+    function3 documented
+    """
     if not check(matrix):
         raise TypeError("matrix must be a list of lists")
     
-    if matrix == [[]]:
-        return 1
-    
     if not check_shape(matrix):
-        raise ValueError("matrix must be a square matrix")
-     
-    A = [row[:] for row in matrix]
-    rows = len(A)
-    cols = len(A[0])
-    pivot_row = 0
-    for pivot_col in range(cols):
-        if pivot_row >= rows:
-            break
-        if A[pivot_row][pivot_col] == 0:
-            for r in range(pivot_row + 1, rows):
-                if A[r][pivot_col] != 0:
-                    A[pivot_row], A[r] = A[r], A[pivot_row]
-                    break
-        if A[pivot_row][pivot_col] == 0:
-            continue
-        for r in range(pivot_row+1, rows):
-            factor = A[r][pivot_col] / A[pivot_row][pivot_col]
-            for c in range(cols):
-                A[r][c] = A[r][c] - factor * A[pivot_row][c]
-        pivot_row += 1
-
-    det = 1
-    for i in range(len(A)):
-        for j in range(len(A[0])):
-            if i == j:
-                det *= A[i][j]
+        raise ValueError("matrix must be square matrix")
     
-    return int(det)
+    n = len(matrix)
+    A = [row[:] for row in matrix]
+    prev = 1
+    sign = 1
+
+    if A == [[]]:
+        return 1
+    for k in range(n - 1):
+        if A[k][k] == 0:
+            for r in range(k + 1, n):
+                if A[r][k] != 0:
+                    A[k], A[r] = A[r], A[k]
+                    sign *= -1
+                    break
+            else:
+                return 0 
+        for i in range(k + 1, n):
+            for j in range(k + 1, n):
+                A[i][j] = (A[k][k] * A[i][j] - A[i][k] * A[k][j]) // prev
+            A[i][k] = 0
+
+        prev = A[k][k]
+    return sign * A[n - 1][n - 1]
