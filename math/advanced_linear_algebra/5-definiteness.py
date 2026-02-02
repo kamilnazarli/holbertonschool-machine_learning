@@ -21,7 +21,7 @@ def definiteness(matrix):
     x = len(matrix)
     if any(len(row) != x for row in matrix):
         return None
-    if matrix_transpose(matrix) != matrix:
+    if all(matrix_transpose(matrix) != matrix):
         return None
     eigen_values = np.linalg.eigvalsh(matrix)
     if all(eigen_values > 0):
