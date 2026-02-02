@@ -3,17 +3,6 @@ import numpy as np
 '''module documented'''
 
 
-def matrix_transpose(matrix):
-    '''transpose function'''
-    new_matrix = []
-    for col in range(len(matrix[0])):
-        temp = []
-        for row in range(len(matrix)):
-            temp.append(matrix[row][col])
-        new_matrix.append(temp)
-    return new_matrix
-
-
 def definiteness(matrix):
     '''function documented'''
     if type(matrix) != np.ndarray:
@@ -21,7 +10,7 @@ def definiteness(matrix):
     x = len(matrix)
     if any(len(row) != x for row in matrix):
         return None
-    if all(matrix_transpose(matrix) != matrix):
+    if np.all(matrix.T != matrix):
         return None
     eigen_values = np.linalg.eigvalsh(matrix)
     if all(eigen_values > 0):
