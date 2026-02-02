@@ -10,7 +10,7 @@ def definiteness(matrix):
     x = len(matrix)
     if any(len(row) != x for row in matrix):
         return None
-    if np.all(matrix.T != matrix):
+    if np.any(matrix.T != matrix):
         return None
     eigen_values = np.linalg.eigvalsh(matrix)
     if np.all(eigen_values > 0):
