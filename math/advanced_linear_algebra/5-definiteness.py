@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-import numpy as np
 '''module documented'''
+import numpy as np
 
 
 def definiteness(matrix):
