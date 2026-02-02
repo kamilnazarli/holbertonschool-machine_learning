@@ -1,11 +1,11 @@
-#/usr/bin/env python3
+#!/usr/bin/env python3
 import numpy as np
 '''module documented'''
 
 
 def definiteness(matrix):
     '''function documented'''
-    if type(matrix) != np.ndarray:
+    if type(matrix) is not np.ndarray:
         raise TypeError("matrix must be a numpy.ndarray")
     x = len(matrix)
     if any(len(row) != x for row in matrix):
