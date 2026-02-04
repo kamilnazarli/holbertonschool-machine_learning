@@ -28,9 +28,16 @@ class Poisson:
              / Poisson.factorial(k))
         return p
 
+    def cdf(self, k):
+        '''method2 documented'''
+        cdf_p = 0
+        for i in range(1, k+1):
+            cdf_p += self.pmf(k)
+        return cdf_p
+
     @staticmethod
     def factorial(n):
-        '''method2 documented'''
+        '''method documented'''
         p = 1
         for i in range(1, n+1):
             p *= i
