@@ -28,6 +28,11 @@ class Normal:
         '''method2 documented'''
         return z * self.stddev + self.mean
 
+    def pdf(self, x):
+        '''method3 documented'''
+        return ((1 / (2 * 3.1415926536 * self.stddev ** 2) ** (0.5)) 
+                * 2.7182818285 ** (-(x-self.mean) ** 2 / 2 * self.stddev ** 2))
+    
     def standard_dev(self):
         '''method documented'''
         stddev = 0
