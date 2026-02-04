@@ -36,7 +36,7 @@ class Poisson:
         if k < 0:
             return 0
         for i in range(1, k+1):
-            cdf_p += self.pmf(i)
+            cdf_p = cdf_p + self.pmf(i)
         return cdf_p
 
     @staticmethod
