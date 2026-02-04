@@ -20,8 +20,16 @@ class Normal:
             self.mean = sum(data) / len(data)
             self.stddev = self.standard_dev()
 
-    def standard_dev(self):
+    def z_score(self, x):
         '''method1 documented'''
+        return (x - self.mean) / self.stddev
+    
+    def x_value(self, z):
+        '''method2 documented'''
+        return z * self.stddev + self.mean
+
+    def standard_dev(self):
+        '''method documented'''
         stddev = 0
         for i in range(len(self.data)):
             stddev = stddev + (self.data[i] - self.mean) ** 2
