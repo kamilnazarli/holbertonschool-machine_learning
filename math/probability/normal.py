@@ -34,6 +34,10 @@ class Normal:
                 * 2.7182818285 **
                 (-(x-self.mean) ** 2 / (2 * self.stddev ** 2)))
 
+    def cdf(self, x):
+        '''method4 documented'''
+        return 0.5 * (1 + Normal.erf(x / (2 ** 0.5)))
+
     def standard_dev(self):
         '''method documented'''
         stddev = 0
@@ -41,3 +45,10 @@ class Normal:
             stddev = stddev + (self.data[i] - self.mean) ** 2
         stddev = (stddev / len(self.data)) ** (0.5)
         return stddev
+    
+    @staticmethod
+    def erf(z):
+        '''erf documented'''
+        integr = (- 2.7182818285 ** (-2 * z) / 2 - 
+                  - 2.7182818285 ** (-2 * 0) / 2)
+        return (2 / (3.1415926536) ** 0.5) * integr
