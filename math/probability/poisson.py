@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
+'''module documented'''
 
 
 class Poisson:
+    '''class documented'''
     def __init__(self, data=None, lambtha=1.):
+        '''constructor documented'''
         self.data = data
         if data is None:
             if lambtha <= 0:
