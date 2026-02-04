@@ -31,6 +31,10 @@ class Poisson:
     def cdf(self, k):
         '''method2 documented'''
         cdf_p = 0
+        if not isinstance(k, int):
+            k = int(k)
+        if k < 0:
+            return 0
         for i in range(1, k+1):
             cdf_p += self.pmf(k)
         return cdf_p
