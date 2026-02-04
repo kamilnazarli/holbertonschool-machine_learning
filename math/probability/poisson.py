@@ -17,14 +17,17 @@ class Poisson:
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
             self.lambtha = sum(data) / len(data)
+
     def pmf(self, k):
         '''method1 documented'''
         if not isinstance(k, int):
             k = int(k)
         if k < 0:
             return 0
-        p = (self.lambtha ** k) * 2.7182818285 ** (-self.lambtha) / Poisson.factorial(k)
+        p = ((self.lambtha ** k) * 2.7182818285 ** (-self.lambtha) 
+            / Poisson.factorial(k))
         return p
+
     @staticmethod
     def factorial(n):
         '''method2 documented'''
