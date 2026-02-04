@@ -23,7 +23,7 @@ class Normal:
     def z_score(self, x):
         '''method1 documented'''
         return (x - self.mean) / self.stddev
-    
+
     def x_value(self, z):
         '''method2 documented'''
         return z * self.stddev + self.mean
