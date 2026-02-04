@@ -24,8 +24,8 @@ class Poisson:
             k = int(k)
         if k < 0:
             return 0
-        p = ((self.lambtha ** k) * 2.7182818285 ** (-self.lambtha) 
-            / Poisson.factorial(k))
+        p = ((self.lambtha ** k) * 2.7182818285 ** (-self.lambtha)
+                / Poisson.factorial(k))
         return p
 
     @staticmethod
