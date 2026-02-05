@@ -34,7 +34,7 @@ class Binomial:
             return 0
         return ((self.factorial(self.n) /
                  (self.factorial(k) * self.factorial(self.n - k))) *
-                 (self.p ** k) * (1 - self.p) ** (self.n - k))
+                       (self.p ** k) * (1 - self.p) ** (self.n - k))
 
     @staticmethod
     def factorial(n):
