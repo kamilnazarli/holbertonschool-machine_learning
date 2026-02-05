@@ -23,6 +23,7 @@ class Binomial:
             self.var = self.variance() # variance = n * p * (1 - p)
             self.p = 1 - (self.var / self.mean)
             self.n = round(self.mean / self.p)
+            self.p = self.mean / self.n
 
     def variance(self):
         '''variance documented'''
