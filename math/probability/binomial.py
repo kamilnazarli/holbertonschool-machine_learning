@@ -10,10 +10,10 @@ class Binomial:
         self.n = n
         self.p = p
         if data is None:
-            if n < 0:
+            if n <= 0:
                 raise ValueError("n must be a positive value")
             if not(p >= 0 and p <= 1):
-                raise ValueError("p must be greater than 0 and less than 1")
+                raise ValueError("p must be grater than 0 and less than 1")
         else:
             if not isinstance(data, list):
                 raise TypeError("data must be a list")
@@ -23,7 +23,6 @@ class Binomial:
             self.var = self.variance() # variance = n * p * (1 - p)
             self.p = 1 - (self.var / self.mean)
             self.n = round(self.mean / self.p)
-            self.p = self.mean / self.n
 
     def variance(self):
         '''variance documented'''
