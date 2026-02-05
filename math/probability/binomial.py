@@ -36,6 +36,17 @@ class Binomial:
                  ((self.factorial(k) * self.factorial(self.n - k))) *
                  (self.p ** k) * (1 - self.p) ** (self.n - k)))
 
+    def cdf(self, k):
+        '''cdf documented'''
+        if not (isinstance(k, int)):
+            k = int(k)
+        if k < 0:
+            return 0
+        cdf_ = 0
+        for i in range(k + 1):
+            cdf_ = cdf_ + self.pmf(i)
+        return cdf_
+
     @staticmethod
     def factorial(n):
         '''factorial documented'''
