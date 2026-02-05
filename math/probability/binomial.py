@@ -26,5 +26,5 @@ class Binomial:
 
     def variance(self):
         '''variance documented'''
-        return sum((x - self.mean) ** 2 for x in self.data) / len(self.data)
-
+        return (sum((x - self.mean) ** 2 for x in self.data) /
+                (len(self.data) - 1))
