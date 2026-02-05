@@ -20,11 +20,25 @@ class Binomial:
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
             self.mean = sum(data) / len(data)  # mean = n * p
-            self.var = self.variance()  # variance = n * p * (1 - p)
+            self.var = sum((x - self.mean) ** 2 for x in self.data) / len(self.data)  # variance = n * p * (1 - p)
             self.p = 1 - (self.var / self.mean)
             self.n = round(self.mean / self.p)
             self.p = self.mean / self.n
+    
+    def pmf(self, k):
+        '''prob mass function for binomial'''
+        if not (isinstance(k, int)):
+            k = int(k)
+        if k < 0:
+            return 0
+        return ((self.factorial(self.n) /
+                 (self.factorial(k) * self.factorial(self.n - k))) * 
+                 (self.p ** k) * (1 - self.p) ** (self.n - k))
 
-    def variance(self):
-        '''variance documented'''
-        return sum((x - self.mean) ** 2 for x in self.data) / len(self.data)
+    @staticmethod
+    def factorial(n):
+        '''factorial documented'''
+        fact = 1
+        for i in range(1, n + 1):
+            fact = fact * i
+        return fact
