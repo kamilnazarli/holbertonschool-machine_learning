@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+'''module documented'''
+
+
 class Binomial:
     '''class documented'''
     def __init__(self, data=None, n=1, p=0.5):
@@ -23,7 +27,7 @@ class Binomial:
     def variance(self):
         '''variance documented'''
         self.var = 0
-        for i in range(len(data)):
-            self.var += (data[i] - self.mean) ** 2
-        self.var = self.var / len(data)
+        for i in range(len(self.data)):
+            self.var += (self.data[i] - self.mean) ** 2
+        self.var = self.var / len(self.data)
         return self.var
