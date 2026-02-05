@@ -48,8 +48,17 @@ class Normal:
 
     @staticmethod
     def erf(z):
-        '''erf documented'''
+        """Approximate erf using numerical integration (Riemann sum)."""
         pi = 3.1415926536
-        return (2 / (pi ** 0.5)) * (z - (z**3)/3 + (z**5)/10)
-
+        dx = 0.0001
+        total = 0.0
+        t = 0.0
+        sign = 1
+        if z < 0:
+            sign = -1
+            z = -z
+        while t < z:
+            total += (2.7182818285 ** (-t**2)) * dx
+            t += dx
+        return sign * (2 / (pi ** 0.5)) * total
 
