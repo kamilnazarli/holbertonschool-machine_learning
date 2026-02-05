@@ -28,6 +28,6 @@ class Binomial:
         '''variance documented'''
         self.var = 0
         for i in range(len(self.data)):
-            self.var += (self.data[i] - self.mean) ** 2
+            self.var = self.var + (self.data[i] - self.mean) ** 2
         self.var = self.var / len(self.data)
         return self.var
