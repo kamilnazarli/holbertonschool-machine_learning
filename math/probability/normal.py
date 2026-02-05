@@ -36,7 +36,8 @@ class Normal:
 
     def cdf(self, x):
         '''method4 documented'''
-        return 0.5 * (1 + Normal.erf((x - self.mean) / (2 ** 0.5 * self.stddev)))
+        return 0.5 * (1 + Normal.erf((x - self.mean) /
+                                     (2 ** 0.5 * self.stddev)))
 
     def standard_dev(self):
         '''method documented'''
@@ -50,4 +51,5 @@ class Normal:
     def erf(z):
         """Approximate erf using a Maclaurin series"""
         pi = 3.1415926536
-        return (2 / (pi ** 0.5)) * (z - (z**3)/3 + (z**5)/10 - (z**7)/42 + (z**9)/216)
+        return ((2 / (pi ** 0.5)) * (z - (z**3)/3 + (z**5)/10 -
+                                     (z**7)/42 + (z**9)/216))
