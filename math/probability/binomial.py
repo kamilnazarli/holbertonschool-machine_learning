@@ -12,15 +12,15 @@ class Binomial:
             self.p = p
             if n <= 0:
                 raise ValueError("n must be a positive value")
-            if not(p > 0 and p < 1):
+            if not (p > 0 and p < 1):
                 raise ValueError("p must be greater than 0 and less than 1")
         else:
             if not isinstance(data, list):
                 raise TypeError("data must be a list")
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
-            self.mean = sum(data) / len(data) # mean = n * p
-            self.var = self.variance() # variance = n * p * (1 - p)
+            self.mean = sum(data) / len(data)  # mean = n * p
+            self.var = self.variance()  # variance = n * p * (1 - p)
             self.p = 1 - (self.var / self.mean)
             self.n = round(self.mean / self.p)
             self.p = self.mean / self.n
