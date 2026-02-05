@@ -19,12 +19,13 @@ class Binomial:
                 raise TypeError("data must be a list")
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
-            self.mean = sum(data) / len(data)  # mean = n * p
-            self.var = sum((x - self.mean) ** 2 for x in self.data) / len(self.data)  # variance = n * p * (1 - p)
+            self.mean = sum(data) / len(data)
+            self.var = (sum((x - self.mean) ** 2 for x in self.data) /
+                        len(self.data))
             self.p = 1 - (self.var / self.mean)
             self.n = round(self.mean / self.p)
             self.p = self.mean / self.n
-    
+
     def pmf(self, k):
         '''prob mass function for binomial'''
         if not (isinstance(k, int)):
@@ -33,7 +34,7 @@ class Binomial:
             return 0
         return ((self.factorial(self.n) /
                  (self.factorial(k) * self.factorial(self.n - k))) * 
-                 (self.p ** k) * (1 - self.p) ** (self.n - k))
+                  (self.p ** k) * (1 - self.p) ** (self.n - k))
 
     @staticmethod
     def factorial(n):
