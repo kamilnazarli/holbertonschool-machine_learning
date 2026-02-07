@@ -13,12 +13,14 @@ def pmf(n, k, p):
                  ((factorial(k) * factorial(n - k))) *
                  (p ** k) * (1 - p) ** (n - k)))
 
+
 def factorial(n):
         '''factorial documented'''
         fact = 1
         for i in range(1, n + 1):
             fact = fact * i
         return fact
+
 
 def likelihood(x, n, P):
     '''likelihood documented'''
