@@ -33,4 +33,4 @@ def likelihood(x, n, P):
         raise TypeError("P must be a 1D numpy.ndarray")
     if any(P < 0) or any(P > 1):
         raise ValueError("All values in P must be in the range [0, 1]")
-    return pmf(n, x, P)
+    return pmf(int(n), x, P)
