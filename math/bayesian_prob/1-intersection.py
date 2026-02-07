@@ -53,11 +53,9 @@ def intersection(x, n, P, Pr):
         raise TypeError("Pr must be a numpy.ndarray "
                         "with the same shape as P")
     if any(P < 0) or any(P > 1):
-        raise ValueError("All values in {P} must be in the range "
-                         "[0, 1] where {P} is the incorrect variable")
+        raise ValueError("All values in P must be in the range")
     if any(Pr < 0) or any(Pr > 1):
-        raise ValueError("All values in {P} must be in the range "
-                         "[0, 1] where {P} is the incorrect variable")
+        raise ValueError("All values in Pr must be in the range")
     if not (np.isclose(np.sum(Pr), 1)):
         raise ValueError("Pr must sum to 1")
     return likelihood(x, n, P) * Pr
