@@ -22,7 +22,7 @@ def factorial(n):
 
 def likelihood(x, n, P):
     '''likelihood documented'''
-    if not (isinstance(n, int) and n >= 0):
+    if not (isinstance(n, int) and n > 0):
         raise ValueError("n must be a positive integer")
     if not (isinstance(x, int) and x >= 0):
         raise ValueError("x must be an integer that is " \
