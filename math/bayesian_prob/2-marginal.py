@@ -49,12 +49,13 @@ def intersection(x, n, P, Pr):
         raise ValueError("x cannot be greater than n")
     if not (isinstance(P, np.ndarray) and len(P.shape) == 1):
         raise TypeError("P must be a 1D numpy.ndarray")
+    if not (isinstance(Pr, np.ndarray) and Pr.shape == P.shape):
+        raise TypeError("Pr must be a numpy.ndarray "
+                        "with the same shape as P")
     if any(P < 0) or any(P > 1):
-        raise ValueError("All values in {P} must be in the range "
-                         "[0, 1] where {P} is the incorrect variable")
+        raise ValueError("All values in P must be in the range [0, 1]")
     if any(Pr < 0) or any(Pr > 1):
-        raise ValueError("All values in {P} must be in the range "
-                         "[0, 1] where {P} is the incorrect variable")
+        raise ValueError("All values in Pr must be in the range [0, 1]")
     if not (np.isclose(np.sum(Pr), 1)):
         raise ValueError("Pr must sum to 1")
     return likelihood(x, n, P) * Pr
@@ -71,12 +72,13 @@ def marginal(x, n, P, Pr):
         raise ValueError("x cannot be greater than n")
     if not (isinstance(P, np.ndarray) and len(P.shape) == 1):
         raise TypeError("P must be a 1D numpy.ndarray")
+    if not (isinstance(Pr, np.ndarray) and Pr.shape == P.shape):
+        raise TypeError("Pr must be a numpy.ndarray "
+                        "with the same shape as P")
     if any(P < 0) or any(P > 1):
-        raise ValueError("All values in {P} must be in the range "
-                         "[0, 1] where {P} is the incorrect variable")
+        raise ValueError("All values in P must be in the range [0, 1]")
     if any(Pr < 0) or any(Pr > 1):
-        raise ValueError("All values in {P} must be in the range "
-                         "[0, 1] where {P} is the incorrect variable")
+        raise ValueError("All values in Pr must be in the range [0, 1]")
     if not (np.isclose(np.sum(Pr), 1)):
         raise ValueError("Pr must sum to 1")
     return np.sum(likelihood(x, n, P) * Pr)
