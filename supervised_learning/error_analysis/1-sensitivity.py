@@ -4,11 +4,15 @@ import numpy as np
 
 
 def sensitivity(confusion):
-    '''function documented'''
-    TP = sum([confusion[i][j] 
-              for i in range(len(confusion)) 
-              for j in range(len(confusion[i])) if i==j])
-    FN = sum([confusion[i][j] 
-              for i in range(len(confusion)) 
-              for j in range(len(confusion[i])) if i!=j])
-    return TP / (TP + FN)
+    '''module documented'''
+    res = []
+    for i in range(len(confusion)):
+        TP, FN = 0, 0
+        for j in range(len(confusion[i])):
+            if i == j:
+                TP = confusion[i][j]
+            else:
+                FN += confusion[i][j]
+        sens = TP / (TP + FN)
+        res.append(sens)
+    return np.asarray(res)
