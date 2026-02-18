@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 '''module documented'''
+import numpy as np
 
 
 def sensitivity(confusion):
