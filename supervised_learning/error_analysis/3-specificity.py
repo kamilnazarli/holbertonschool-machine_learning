@@ -12,7 +12,7 @@ def specificity(confusion):
         for j in range(len(confusion[i])):
             if i != id and j != id:
                 TN = confusion[j][i]
-            else:
+            elif i != j:
                 FP += confusion[j][i]
         spec = TN / (TN + FP)
         res.append(spec)
