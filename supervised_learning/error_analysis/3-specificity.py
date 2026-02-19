@@ -14,6 +14,7 @@ def specificity(confusion):
                 TN = confusion[j][i]
             elif i != j:
                 FP += confusion[j][i]
+        id += 1
         spec = TN / (TN + FP)
         res.append(spec)
     return np.asarray(res)
