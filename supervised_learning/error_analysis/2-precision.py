@@ -7,7 +7,7 @@ def precision(confusion):
     '''function documented'''
     res = []
     for i in range(len(confusion)):
-        TP, FP = 0, 0
+        TP, FP, prec = 0, 0, 0
         for j in range(len(confusion[i])):
             if i == j:
                 TP = confusion[j][i]
