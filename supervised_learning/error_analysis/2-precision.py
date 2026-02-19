@@ -11,9 +11,8 @@ def precision(confusion):
         for j in range(len(confusion[i])):
             if i == j:
                 TP = confusion[j][i]
-            elif i + j <= len(confusion):
+            else:
                 FP += confusion[j][i]
         prec = TP / (TP + FP)
         res.append(prec)
     return np.asarray(res)
-
