@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+'''module documented'''
+import numpy as np
+
+
+def precision(confusion):
+    '''function documented'''
+    res = []
+    for i in range(len(confusion)):
+        TP, FP = 0, 0
+        for j in range(len(confusion[i])):
+            if i == j:
+                TP = confusion[i][j]
+            elif i + j <= len(confusion):
+                FP += confusion[i][j]
+        prec = TP / (TP + FP)
+        res.append(prec)
+    return np.asarray(res)
