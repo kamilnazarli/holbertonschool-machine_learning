@@ -6,14 +6,12 @@ import numpy as np
 def specificity(confusion):
     '''function documented'''
     res = []
+    total = confusion.sum()
     for i in range(len(confusion)):
-        TN, FP, spec = 0, 0, 0
-        act_neg = 0
-        for j in range(len(confusion[i])):
-            if i != j:
-                act_neg += confusion[i][j]
-                FP += confusion[j][i]
-        TN = act_neg - FP
+        TP = confusion[i, i]
+        FP = confusion[:, i].sum() - TP
+        FN = confusion[i, :].sum() - TP
+        TN = total - TP - FP - FN
         spec = TN / (TN + FP)
         res.append(spec)
     return np.asarray(res)
