@@ -11,7 +11,7 @@ def specificity(confusion):
         id = 0
         for j in range(len(confusion[i])):
             if i != id and j != id:
-                TN = confusion[j][i]
+                TN += confusion[j][i]
             elif i != j:
                 FP += confusion[j][i]
         id += 1
