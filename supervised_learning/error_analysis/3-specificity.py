@@ -8,13 +8,12 @@ def specificity(confusion):
     res = []
     for i in range(len(confusion)):
         TN, FP, spec = 0, 0, 0
-        id = 0
+        act_neg = 0
         for j in range(len(confusion[i])):
-            if i != id and j != id:
-                TN += confusion[j][i]
-            elif i != j:
+            if i != j:
+                act_neg += confusion[i][j]
                 FP += confusion[j][i]
-        id += 1
+        TN = act_neg - FP
         spec = TN / (TN + FP)
         res.append(spec)
     return np.asarray(res)
