@@ -20,11 +20,12 @@ class Node:
     def max_depth_below(self):
         '''method documented'''
         if (self.right_child.max_depth_below() >
-            self.left_child.max_depth_below()):
+             self.left_child.max_depth_below()):
             max_d = self.right_child
         else:
             max_d = self.left_child
         return max_d.max_depth_below()
+
 
 class Leaf(Node):
     '''Leaf class documented'''
@@ -38,6 +39,7 @@ class Leaf(Node):
     def max_depth_below(self):
         '''method documented'''
         return self.depth
+
 
 class Decision_Tree():
     '''decision_tree class documented'''
