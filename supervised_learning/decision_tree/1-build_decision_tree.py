@@ -28,32 +28,26 @@ class Node:
     
     def count_nodes_below(self, only_leaves=False):
         count = 0
-        count += self.left_child.count_nodes_below(self, only_leaves)
-        count += self.right_child.count_nodes_below(self, only_leaves)
-        # if only_leaves:
-        #     if self.left_child.is_leaf:
-        #         count += 1
-        #     else:
-        #         count += self.left_child.count_nodes_below(only_leaves)
-        #     if self.right_child.is_leaf:
-        #         count += 1
-        #     else:
-        #         count += self.right_child.count_nodes_below(only_leaves)
-        # else:
-        #     # pass
-        #     count += self.left_child.count_nodes_below(only_leaves)
-        #     count += self.right_child.count_nodes_below(only_leaves)
-            # if self.left_child.is_leaf:
-            #     count += 1
-            # else:
-            #     count += self.left_child.count_nodes_below(only_leaves)
-            # if self.right_child.is_leaf:
-            #     count += 1
-            # else:
-            #     count += self.right_child.count_nodes_below(only_leaves)
-        return count
+        if self.left_child is not None:
+            if only_leaves:
+                if self.left_child.is_leaf:
+                    count += 1
+                else:
+                    count += self.left_child.count_nodes_below(only_leaves)
+            else:
+                count += 1
+                count += self.left_child.count_nodes_below(only_leaves)
         
-
+        if self.right_child is not None:
+            if only_leaves:
+                if self.right_child.is_leaf:
+                    count += 1
+                else:
+                    count += self.right_child.count_nodes_below(only_leaves)
+            else:
+                count += 1
+                count += self.right_child.count_nodes_below(only_leaves)
+        return count
 
 class Leaf(Node):
     '''Leaf class documented'''
