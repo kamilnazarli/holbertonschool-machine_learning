@@ -36,7 +36,7 @@ class Node:
                     else:
                         count += child.count_nodes_below(True)
                 else:
-                    count += child.count_nodes_below(False)
+                    count += 0.5 + child.count_nodes_below(False)
         return count
 
 class Leaf(Node):
