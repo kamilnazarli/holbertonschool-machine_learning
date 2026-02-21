@@ -41,8 +41,8 @@ class Node:
                 count += self.right_child.count_nodes_below(only_leaves)
         else:
             # pass
-            count += self.left_child.count_nodes_below(only_leaves)
-            count += self.right_child.count_nodes_below(only_leaves)
+            count += self.left_child.count_nodes_below(only_leaves=True)
+            count += self.right_child.count_nodes_below(only_leaves=True)
             # if self.left_child.is_leaf:
             #     count += 1
             # else:
