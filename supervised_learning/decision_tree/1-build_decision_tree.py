@@ -33,21 +33,22 @@ class Node:
         if only_leaves:
             if self.left_child.is_leaf:
                 count += 1
-            # else:
-            #     count += self.left_child.count_nodes_below(only_leaves)
-            if self.right_child.is_leaf:
-                count += 1
-            # else:
-            #     count += self.right_child.count_nodes_below(only_leaves)
-        else:
-            if self.left_child.is_leaf:
-                count += 1
             else:
                 count += self.left_child.count_nodes_below(only_leaves)
             if self.right_child.is_leaf:
                 count += 1
             else:
                 count += self.right_child.count_nodes_below(only_leaves)
+        else:
+            pass
+            # if self.left_child.is_leaf:
+            #     count += 1
+            # else:
+            #     count += self.left_child.count_nodes_below(only_leaves)
+            # if self.right_child.is_leaf:
+            #     count += 1
+            # else:
+            #     count += self.right_child.count_nodes_below(only_leaves)
         return count
         
 
