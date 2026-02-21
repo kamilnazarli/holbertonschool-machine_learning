@@ -5,7 +5,8 @@ import numpy as np
 
 class Node:
     '''Node class documented'''
-    def __init__(self, feature=None, threshold=None, left_child=None, right_child=None, is_root=False, depth=0):
+    def __init__(self, feature=None, threshold=None, left_child=None,
+                 right_child=None, is_root=False, depth=0):
         '''init documented'''
         self.feature = feature
         self.threshold = threshold
@@ -20,9 +21,9 @@ class Node:
         '''method documented'''
         if (self.right_child.max_depth_below() >
             self.left_child.max_depth_below()):
-                max_d = self.right_child
+            max_d = self.right_child
         else:
-                max_d = self.left_child
+            max_d = self.left_child
         return max_d.max_depth_below()
 
 class Leaf(Node):
@@ -40,7 +41,8 @@ class Leaf(Node):
 
 class Decision_Tree():
     '''decision_tree class documented'''
-    def __init__(self, max_depth=10, min_pop=1, seed=0, split_criterion="random", root=None):
+    def __init__(self, max_depth=10, min_pop=1, seed=0,
+                 split_criterion="random", root=None):
         '''init documented'''
         self.rng = np.random.default_rng(seed)
         if root:
