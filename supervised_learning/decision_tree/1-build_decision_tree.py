@@ -28,8 +28,8 @@ class Node:
     
     def count_nodes_below(self, only_leaves=False):
         count = 0
-        count += self.left_child.count_nodes(self, only_leaves)
-        count += self.right_child.count_nodes(self, only_leaves)
+        count += self.left_child.count_nodes_below(self, only_leaves)
+        count += self.right_child.count_nodes_below(self, only_leaves)
         # if only_leaves:
         #     if self.left_child.is_leaf:
         #         count += 1
