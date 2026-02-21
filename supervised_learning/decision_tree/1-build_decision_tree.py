@@ -45,7 +45,7 @@ class Node:
                 else:
                     count += self.right_child.count_nodes_below(only_leaves)
             else:
-                count += 1
+                # count += 1
                 count += self.right_child.count_nodes_below(only_leaves)
         return count
 
