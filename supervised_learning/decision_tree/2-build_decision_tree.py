@@ -22,15 +22,18 @@ class Node:
         if self.is_leaf:
             return (f"-> leaf [value={self.value}]")
         if self.is_root:
-            node_line = (f"root [feature={self.feature}, threshold={self.threshold}]\n")
+            node_line = (f"root [feature={self.feature}, threshold={self.threshold}]")
         else:
-            node_line = (f"-> node [feature={self.feature}, threshold={self.threshold}]\n")
-        left_text = self.left_child.__str__()
-        left_text += self.left_child_add_prefix(left_text)
-        right_text = self.right_child.__str__()
-        right_text += self.right_child_add_prefix(right_text)
+            node_line = (f"-> node [feature={self.feature}, threshold={self.threshold}]")
+        
+        if self.left_child:
+            left_text = self.left_child.__str__()
+            left_text += self.left_child_add_prefix(left_text)
+        if self.right_child:
+            right_text = self.right_child.__str__()
+            right_text += self.right_child_add_prefix(right_text)
 
-        return node_line + '\n' + left_text + '\n' + right_text
+        return node_line + '\n' + left_text + right_text
 
     def left_child_add_prefix(self,text):
             lines=text.split("\n")
