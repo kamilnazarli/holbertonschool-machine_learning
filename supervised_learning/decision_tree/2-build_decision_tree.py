@@ -21,16 +21,16 @@ class Node:
         '''__str__ method'''
         if self.is_leaf:
             return f"-> leaf [value={self.value}]"
-    
+
         if self.is_root:
             node_line = f"root [feature={self.feature}, threshold={self.threshold}]"
         else:
             node_line = f"-> node [feature={self.feature}, threshold={self.threshold}]"
-    
+
         left_text = self.left_child_add_prefix(self.left_child.__str__()) if self.left_child else ""
         right_text = self.right_child_add_prefix(self.right_child.__str__()) if self.right_child else ""
-    
-        return node_line + left_text + right_text
+
+        return node_line + "\n" + left_text + right_text
 
     def left_child_add_prefix(self,text):
             lines=text.split("\n")
