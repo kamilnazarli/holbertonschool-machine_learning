@@ -20,7 +20,7 @@ class Node:
     def __str__(self) :
         '''__str__ method'''
         if self.is_root:
-            node_line = (f"-> root [feature={self.feature}, threshold={self.threshold}]")
+            node_line = (f"root [feature={self.feature}, threshold={self.threshold}]")
         else:
             node_line = (f"-> node [feature={self.feature}, threshold={self.threshold}]")
         left_text = self.left_child.__str__()
