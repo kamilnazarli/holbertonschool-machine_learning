@@ -25,8 +25,8 @@ class Node:
             node_line = (f"root [feature={self.feature}, threshold={self.threshold}]")
         else:
             node_line = (f"-> node [feature={self.feature}, threshold={self.threshold}]")
-        left_text = ""
-        right_text = ""
+        # left_text = ""
+        # right_text = ""
         if self.left_child:
             temp = self.left_child.__str__()
             left_text += self.left_child_add_prefix(temp)
