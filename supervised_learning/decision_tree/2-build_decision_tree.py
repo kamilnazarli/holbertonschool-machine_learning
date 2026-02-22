@@ -29,10 +29,13 @@ class Node:
         if self.left_child:
             temp = self.left_child.__str__()
             left_text += self.left_child_add_prefix(temp)
+        else:
+            left_text = ""
         if self.right_child:
             temp = self.right_child.__str__()
             right_text += self.right_child_add_prefix(temp)
-
+        else:
+            right_text = ""
         return node_line + '\n' + left_text + right_text
 
     def left_child_add_prefix(self,text):
