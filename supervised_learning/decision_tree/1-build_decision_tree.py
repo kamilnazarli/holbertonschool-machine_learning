@@ -27,6 +27,7 @@ class Node:
         return max_d.max_depth_below()
     
     def count_nodes_below(self, only_leaves=False):
+        '''method documented'''
         count = 0
         if only_leaves:
             if self.is_leaf:
@@ -53,7 +54,8 @@ class Leaf(Node):
         '''method documented'''
         return self.depth
     
-    def count_nodes_below(self, only_leaves=False) :
+    def count_nodes_below(self, only_leaves=False):
+        '''method documented'''
         return 1
 
 
@@ -78,5 +80,6 @@ class Decision_Tree():
         '''method documented'''
         return self.root.max_depth_below()
     
-    def count_nodes(self, only_leaves=False) :
+    def count_nodes(self, only_leaves=False):
+        '''method documented'''
         return self.root.count_nodes_below(only_leaves=only_leaves)
