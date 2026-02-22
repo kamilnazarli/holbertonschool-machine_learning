@@ -19,8 +19,8 @@ class Node:
     
     def __str__(self) :
         '''__str__ method'''
-        # if self.is_leaf:
-            # return (f"-> leaf [value={self.value}]")
+        if self.is_leaf:
+            return (f"-> leaf [value={self.value}]")
         if self.is_root:
             node_line = (f"root [feature={self.feature}, threshold={self.threshold}]\n")
         else:
