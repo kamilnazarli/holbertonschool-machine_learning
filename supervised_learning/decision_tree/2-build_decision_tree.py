@@ -26,25 +26,26 @@ class Node:
             text = f"root [feature={self.feature}, threshold={self.threshold}]\n"
         else:
             text = f"-> node [feature={self.feature}, threshold={self.threshold}]\n"
-
-        text += self.left_child_add_prefix(self.left_child.__str__()) if self.left_child else ""
-        text += self.right_child_add_prefix(self.right_child.__str__()) if self.right_child else ""
-
-        return text.rstrip("\n")
+        if self.left_child:
+            text += "\n" + self.left_child_add_prefix(self.left_child.__str__())
+        if self.right_child:
+            text += "\n" + self.right_child_add_prefix(self.right_child.__str__())
+        return text
 
     def left_child_add_prefix(self, text):
         lines = text.split("\n")
         new_text = "+--->" + lines[0] + "\n"
         for line in lines[1:]:
             new_text += "|   " + line + "\n"
-        return new_text
+        return new_text.rstrip("\n")
 
     def right_child_add_prefix(self, text):
         lines = text.split("\n")
         new_text = "+--->" + lines[0] + "\n"
         for line in lines[1:]:
             new_text += "    " + line + "\n"
-        return new_text
+        return new_text.rstrip("\n")
+
     
     def max_depth_below(self):
         '''method documented'''
