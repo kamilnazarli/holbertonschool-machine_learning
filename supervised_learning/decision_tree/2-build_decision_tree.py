@@ -32,19 +32,19 @@ class Node:
 
         return node_line + "\n" + left_text + right_text
 
-    def left_child_add_prefix(self,text):
-            lines=text.split("\n")
-            new_text="    +--"+lines[0]+"\n"
-            for x in lines[1:]:
-                new_text+=("    |  "+x)+"\n"
-            return (new_text)
-    
-    def right_child_add_prefix(self,text):
-            lines=text.split("\n")
-            new_text="    +--"+lines[0]+"\n"
-            for x in lines[1:]:
-                new_text+=("       "+x)+"\n"
-            return (new_text)
+    def left_child_add_prefix(self, text):
+        lines = text.split("\n")
+        new_text = "+--->" + lines[0] + "\n"
+        for line in lines[1:]:
+            new_text += "|   " + line + "\n"
+        return new_text.rstrip("\n")
+
+    def right_child_add_prefix(self, text):
+        lines = text.split("\n")
+        new_text = "+--->" + lines[0] + "\n"
+        for line in lines[1:]:
+            new_text += "    " + line + "\n"
+        return new_text.rstrip("\n")
     
     def max_depth_below(self):
         '''method documented'''
