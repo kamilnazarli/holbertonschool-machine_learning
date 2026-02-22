@@ -27,16 +27,21 @@ class Node:
         return max_d.max_depth_below()
     
     def count_nodes_below(self, only_leaves=False):
-        count = 0
-        for child in [self.left_child, self.right_child]:
-            if child is not None:
-                if only_leaves:
-                    if child.is_leaf:
-                        count += 1
-                    else:
-                        count += child.count_nodes_below(True)
-                else:
-                    count += 1 + child.count_nodes_below(False)
+        count = 1
+        if only_leaves:
+            if self.left_child.is_leaf:
+                count += 1
+            else:
+                count += self.left_child.count_nodes_below(True)
+            
+            if self.right_child.is_leaf:
+                count += 1
+            else:
+                count += self.right_child.count_nodes_below(True)
+            
+        else:
+            count += self.left_child.count_nodes_below(False)
+            count += self.right_child.count_nodes_below(False)
         return count
 
 class Leaf(Node):
