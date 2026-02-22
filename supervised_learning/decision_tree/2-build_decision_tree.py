@@ -1,0 +1,121 @@
+#!/usr/bin/env python3
+'''module documented'''
+import numpy as np
+
+
+class Node:
+    '''Node class documented'''
+    def __init__(self, feature=None, threshold=None, left_child=None,
+                 right_child=None, is_root=False, depth=0):
+        '''init documented'''
+        self.feature = feature
+        self.threshold = threshold
+        self.left_child = left_child
+        self.right_child = right_child
+        self.is_leaf = False
+        self.is_root = is_root
+        self.sub_population = None
+        self.depth = depth
+    
+    def __str__(self) :
+        '''__str__ method'''
+        if self.is_root:
+            return (f"-> root [feature={self.feature}, threshold={self.threshold}]")
+        if self.left_child.is_leaf:
+            return self.left_child_add_prefix(self.left_child.__str__)
+        else:
+            return (f"-> node [feature={self.feature}, threshold={self.threshold}]")
+        if self.right_child.is_leaf:
+            return self.right_child_add_prefix(self.right_child.__str__)
+        else:
+            return (f"-> node [feature={self.feature}, threshold={self.threshold}]")
+
+
+    def left_child_add_prefix(self,text):
+            lines=text.split("\n")
+            new_text="    +--"+lines[0]+"\n"
+            for x in lines[1:]:
+                new_text+=("    |  "+x)+"\n"
+            return (new_text)
+    
+    def right_child_add_prefix(self,text):
+            lines=text.split("\n")
+            new_text="    +--"+lines[0]+"\n"
+            for x in lines[1:]:
+                new_text+=("       "+x)+"\n"
+            return (new_text)
+    
+    def max_depth_below(self):
+        '''method documented'''
+        if (self.right_child.max_depth_below() >
+                self.left_child.max_depth_below()):
+            max_d = self.right_child
+        else:
+            max_d = self.left_child
+        return max_d.max_depth_below()
+
+    def count_nodes_below(self, only_leaves=False):
+        '''method documented'''
+        count = 0
+        if only_leaves:
+            if self.is_leaf:
+                return 1
+            count += self.left_child.count_nodes_below(True)
+            count += self.right_child.count_nodes_below(True)
+        else:
+            count += 1
+            count += self.left_child.count_nodes_below(False)
+            count += self.right_child.count_nodes_below(False)
+        return count
+
+
+class Leaf(Node):
+    '''Leaf class documented'''
+    def __init__(self, value, depth=None):
+        '''init documented'''
+        super().__init__()
+        self.value = value
+        self.is_leaf = True
+        self.depth = depth
+
+    def __str__(self):
+        '''__str__ method'''
+        return (f"-> leaf [value={self.value}]")
+
+    def max_depth_below(self):
+        '''method documented'''
+        return self.depth
+
+    def count_nodes_below(self, only_leaves=False):
+        '''method documented'''
+        return 1
+
+
+class Decision_Tree():
+    '''decision_tree class documented'''
+    def __init__(self, max_depth=10, min_pop=1, seed=0,
+                 split_criterion="random", root=None):
+        '''init documented'''
+        self.rng = np.random.default_rng(seed)
+        if root:
+            self.root = root
+        else:
+            self.root = Node(is_root=True)
+        self.explanatory = None
+        self.target = None
+        self.max_depth = max_depth
+        self.min_pop = min_pop
+        self.split_criterion = split_criterion
+        self.predict = None
+
+    def __str__(self):
+        '''__str__ method'''
+        return self.root.__str__()
+
+    def depth(self):
+        '''method documented'''
+        return self.root.max_depth_below()
+
+    def count_nodes(self, only_leaves=False):
+        '''method documented'''
+        return self.root.count_nodes_below(only_leaves=only_leaves)
