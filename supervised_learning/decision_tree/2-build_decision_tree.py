@@ -28,7 +28,7 @@ class Node:
         right_text = self.right_child.__str__()
         right_text += self.left_child_add_prefix(right_text)
 
-        return node_line + '\n' + left_text + '\n' + right_text
+        return node_line + '\n' + left_text + '\n' + right_text + '\n'
 
     def left_child_add_prefix(self,text):
             lines=text.split("\n")
