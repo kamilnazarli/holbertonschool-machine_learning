@@ -19,19 +19,19 @@ class Node:
     
     def __str__(self) :
         '''__str__ method'''
-        # if self.is_leaf:
-            # return (f"-> leaf [value={self.value}]")
+        if self.is_leaf:
+            return (f"-> leaf [value={self.value}]")
         if self.is_root:
             node_line = (f"root [feature={self.feature}, threshold={self.threshold}]")
         else:
             node_line = (f"-> node [feature={self.feature}, threshold={self.threshold}]")
         
         if self.left_child:
-            left_text = self.left_child.__str__()
-            left_text += self.left_child_add_prefix(left_text)
+            temp = self.left_child.__str__()
+            left_text += self.left_child_add_prefix(temp)
         if self.right_child:
-            right_text = self.right_child.__str__()
-            right_text += self.right_child_add_prefix(right_text)
+            temp = self.right_child.__str__()
+            right_text += self.right_child_add_prefix(temp)
 
         return node_line + '\n' + left_text + right_text
 
