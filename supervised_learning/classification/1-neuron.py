@@ -15,14 +15,17 @@ class Neuron:
         self.__W = np.random.randn(1, nx)
         self.__b = 0
         self.__A = 0
+
     @property
     def W(self):
         '''getter for W'''
         return self.__W
+
     @property
     def b(self):
         '''getter for b'''
         return self.__b
+
     @property
     def A(self):
         '''getter for A'''
