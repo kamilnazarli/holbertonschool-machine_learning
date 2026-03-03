@@ -5,7 +5,7 @@ import numpy as np
 
 class Neuron:
     '''class documented'''
-    W = np.random.normal(loc=1, scale=3, size=784)
+    W = np.random.normal(loc=1, scale=3, size=(28, 28))
     b = 0
     A = 0
     def __init__(self, nx):
