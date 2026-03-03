@@ -30,7 +30,7 @@ class Neuron:
     def A(self):
         '''getter for A'''
         return self.__A
-   
+
     def forward_prop(self, X):
         '''forward propogation'''
         s = np.matmul(self.__W, X) + self.__b
