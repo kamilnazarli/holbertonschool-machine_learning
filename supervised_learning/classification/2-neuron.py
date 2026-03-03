@@ -33,8 +33,8 @@ class Neuron:
    
     def forward_prop(self, X):
         '''forward propogation'''
-        self.A = self.sigmoid(X)
-        return self.A
+        A = self.sigmoid(X)
+        return A
 
     @staticmethod
     def sigmoid(X):
