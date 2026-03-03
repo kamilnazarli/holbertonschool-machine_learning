@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 '''module documented'''
+import numpy as np
+
 
 class Neuron:
     '''class documented'''
