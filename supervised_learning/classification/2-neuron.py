@@ -33,7 +33,7 @@ class Neuron:
    
     def forward_prop(self, X):
         '''forward propogation'''
-        s = (self.__W * X) + self.__b
+        s = np.matmul(self.__W * X) + self.__b
         self.__A = self.sigmoid(s)
         return self.__A
 
