@@ -39,8 +39,8 @@ class Neuron:
 
     def cost(self, Y, A):
         '''cost function'''
-        x = 1.0000001 - self.__A
-        cost_f = -np.mean(Y * np.log(self.__A) + x / np.log(x))
+        x = 1.0000001 - A
+        cost_f = -np.mean((Y * np.log(A)) + x / np.log(x))
         return cost_f
 
     @staticmethod
