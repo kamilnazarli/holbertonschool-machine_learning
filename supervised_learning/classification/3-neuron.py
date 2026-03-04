@@ -40,11 +40,10 @@ class Neuron:
     def cost(self, Y, A):
         '''cost function'''
         x = 1.0000001 - A
-        cost_f = -np.mean((Y * np.log(A)) + (1- Y) * np.log(x))
+        cost_f = -np.mean((Y * np.log(A)) + (1 - Y) * np.log(x))
         return cost_f
 
     @staticmethod
     def sigmoid(X):
         '''sigmoid function'''
         return 1 / (1 + np.e ** (-X))
-
