@@ -47,7 +47,7 @@ class Neuron:
         '''evaulation'''
         pred = self.forward_prop(X)
         pred = np.where(pred > 0.5, 1, 0)
-        cost = self.cost(Y, pred)
+        cost = self.cost(Y, self.__A)
         return pred, cost
 
     @staticmethod
