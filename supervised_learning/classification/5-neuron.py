@@ -56,8 +56,8 @@ class Neuron:
         dZ = A - Y  # (1, m)
         dw = np.dot(dZ, X.T) / m  # (1, nx)
         db = np.sum(dZ) / m  # (1, m)
-        self.__W -= alpha * dw.T
-        self.__b -= alpha * db.T
+        self.__W -= alpha * dw
+        self.__b -= alpha * db
 
     @staticmethod
     def sigmoid(X):
