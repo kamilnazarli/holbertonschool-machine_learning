@@ -52,10 +52,11 @@ class Neuron:
 
     def gradient_descent(self, X, Y, A, alpha=0.05):
         '''gradient descent'''
-        cost_f = self.cost(Y, A)
-        dw = np.dot(X, (A - Y).T)
-        self.__W -= alpha * dw
-        db = (A - Y)
+        m = Y.shape[1]
+        dZ = A - Y
+        dw = np.dot(dZ, X.T) / m
+        db = np.sum(dZ) / m
+        self.__W -= alpha * dw.T
         self.__b -= alpha * db
 
     @staticmethod
