@@ -53,11 +53,11 @@ class Neuron:
     def gradient_descent(self, X, Y, A, alpha=0.05):
         '''gradient descent'''
         m = Y.shape[1]
-        dZ = A - Y
-        dw = np.dot(dZ, X.T) / m
-        db = np.sum(dZ) / m
+        dZ = A - Y  # (1, m)
+        dw = np.dot(dZ, X.T) / m  # (1, nx)
+        db = np.sum(dZ) / m  # (1, m)
         self.__W -= alpha * dw.T
-        self.__b -= alpha * db
+        self.__b -= alpha * db.T
 
     @staticmethod
     def sigmoid(X):
