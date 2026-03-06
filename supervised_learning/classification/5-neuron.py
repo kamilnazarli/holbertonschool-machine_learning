@@ -54,7 +54,7 @@ class Neuron:
         '''gradient descent'''
         cost_f = self.cost(Y, A)
         dw = (A - Y) * X
-        self.__W -= alpha * dw
+        self.__W -= alpha * dw.T
         db = (A - Y)
         self.__b -= alpha * db
 
