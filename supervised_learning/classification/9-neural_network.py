@@ -23,26 +23,32 @@ class NeuralNetwork:
         self.__W2 = np.random.randn(1, nodes)
         self.__b2 = 0
         self.__A2 = 0
+
     @property
     def W1(self):
         '''getter for W1'''
         return self.__W1
+
     @property
     def b1(self):
         '''getter for b1'''
         return self.__b1
+
     @property
     def A1(self):
         '''getter for A1'''
         return self.__A1
+
     @property
     def W2(self):
         '''getter for W2'''
         return self.__W2
+
     @property
     def b2(self):
         '''getter for b2'''
         return self.__b2
+
     @property
     def A2(self):
         '''getter for A2'''
