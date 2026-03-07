@@ -64,6 +64,12 @@ class NeuralNetwork:
         self.__A2 = self.sigmoid(Z2)
         return self.__A1, self.__A2
 
+    def cost(self, Y, A):
+        '''cost funcrion'''
+        cost_f = -(Y * np.log(A) + (1.0000001 - Y)
+                   * np.log(1.0000001 - A))
+        return cost_f
+
     @staticmethod
     def sigmoid(Z):
         '''sigmoid func'''
