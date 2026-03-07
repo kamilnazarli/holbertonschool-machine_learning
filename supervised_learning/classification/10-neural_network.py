@@ -53,7 +53,7 @@ class NeuralNetwork:
     def A2(self):
         '''getter for A2'''
         return self.__A2
-    
+
     def forward_prop(self, X):
         '''forward propagation'''
         # X(nx, m), W1(nodes, nx), Z1(nodes, m)
@@ -66,4 +66,5 @@ class NeuralNetwork:
 
     @staticmethod
     def sigmoid(Z):
+        '''sigmoid func'''
         return 1 / (1 + np.e ** (-Z))
