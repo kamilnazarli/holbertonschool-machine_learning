@@ -117,6 +117,11 @@ class NeuralNetwork:
             raise TypeError("alpha must be a float")
         if alpha <= 0:
             raise ValueError("alpha must be positive")
+        if verbose or graph:
+            if not (isinstance(step, int)):
+                raise TypeError("iterations must be an integer")
+            if step <= 0 or step >= iterations:
+                raise TypeError("step must be positive and <= iterations")
         iteration_s, cost_s = [], []
         for i in range(0, iterations+1):
             A1, A2 = self.forward_prop(X)
@@ -125,11 +130,6 @@ class NeuralNetwork:
                 print(f"Cost after {i} iterations: {self.cost(Y, A2)}")
                 iteration_s.append(i)
                 cost_s.append(self.cost(Y, A2))
-            if verbose or graph:
-                if not (isinstance(step, int)):
-                    raise TypeError("iterations must be an integer")
-                if step <= 0 or step >= iterations:
-                    raise TypeError("step must be positive and <= iterations")
         if graph:
             plt.plot(iteration_s, cost_s)
             plt.xlabel("iteration")
