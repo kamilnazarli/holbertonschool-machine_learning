@@ -66,7 +66,7 @@ class NeuralNetwork:
 
     def cost(self, Y, A):
         '''cost funcrion'''
-        cost_f = -(Y * np.log(A) + (1.0000001 - Y)
+        cost_f = -(Y * np.log(A) + (1 - Y)
                    * np.log(1.0000001 - A))
         return np.mean(cost_f)
 
