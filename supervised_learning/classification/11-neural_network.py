@@ -68,7 +68,7 @@ class NeuralNetwork:
         '''cost funcrion'''
         cost_f = -(Y * np.log(A) + (1.0000001 - Y)
                    * np.log(1.0000001 - A))
-        return cost_f
+        return np.mean(cost_f)
 
     @staticmethod
     def sigmoid(Z):
