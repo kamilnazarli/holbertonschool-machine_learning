@@ -133,8 +133,8 @@ class NeuralNetwork:
         if graph:
             plt.plot(iteration_s, cost_s)
             plt.xlabel("iteration")
-            plt.ylabel("Training Cost")
-            plt.title("Cost")
+            plt.ylabel("Cost")
+            plt.title("Training Cost")
             plt.show()
         return self.evaluate(X, Y)
 
