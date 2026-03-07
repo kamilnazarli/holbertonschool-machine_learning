@@ -72,7 +72,7 @@ class NeuralNetwork:
 
     def evaluate(self, X, Y):
         '''evaluation'''
-        pred = self.forward_prop(X)[2]
+        pred = self.forward_prop(X)[1]
         pred = np.where(pred >= 0.5, 1, 0)
         return pred, self.cost(Y, self.__A2)
 
