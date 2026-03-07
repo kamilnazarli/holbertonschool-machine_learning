@@ -53,3 +53,17 @@ class NeuralNetwork:
     def A2(self):
         '''getter for A2'''
         return self.__A2
+    
+    def forward_prop(self, X):
+        '''forward propagation'''
+        # X(nx, m), W1(nodes, nx), Z1(nodes, m)
+        # W2(1, nodes), output(1, m)
+        Z1 = np.dot(self.__W1, X) + self.b1
+        self.__A1 = self.sigmoid(Z1)
+        Z2 = np.dot(self.__W2, self.__A1)
+        self.__A2 = self.sigmoid(Z2)
+        return self.__A1, self.__A2
+
+    @staticmethod
+    def sigmoid(Z):
+        return 1 / (1 + np.e ** (-Z))
