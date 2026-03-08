@@ -9,5 +9,5 @@ def one_hot_encode(Y, classes):
         temp = np.zeros((1, classes))
         temp[0, i] = 1
         res[i] = temp
-    return res
+    return res.T
 
