@@ -152,13 +152,13 @@ class DeepNeuralNetwork:
         if not (".pkl" in filename):
             filename = f"{filename}.pkl"
 
-        with open(filename, 'w') as f:
+        with open(filename, 'wb') as f:
             pickle.dump(obj, f)
 
         if not (os.path.exists(filename)):
             return None
 
-        with open(filename, 'r') as f:
+        with open(filename, 'rb') as f:
             loaded_data = pickle.load(f)
         return loaded_data
         
