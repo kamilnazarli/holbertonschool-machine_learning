@@ -73,10 +73,15 @@ class DeepNeuralNetwork:
     def gradient_descent(self, Y, cache, alpha=0.05):
         '''gradient descent'''
         m = Y.shape[1]
-        for layer in range(len(cache)-1, 1, -1):
+        dZ = {}
+        A_last = cache[f"A{self.__L}"]
+        dZ[self.__L] = A_last - Y
+
+        for layer in range(len(self.__L), 0, -1):
+            A_prev = cache[f"A{layer-1}"] if layer > 1 else cache["A0"]
             dZ = cache[f"A{layer}"] - Y
-            dW = (1 / m) * np.matmul(dZ, cache[f"A{layer - 1}"].T)
-            db = (1 / m) * np.sum(dZ, axis=1, keepdims=True)
+            dW = (1 / m) * np.matmul(dZ[layer], A_prev.T)
+            db = (1 / m) * np.sum(dZ[layer], axis=1, keepdims=True)
 
             self.__weights[f"W{layer}"] -= alpha * dW
             self.__weights[f"b{layer}"] -= alpha * db
