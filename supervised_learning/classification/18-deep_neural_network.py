@@ -52,8 +52,8 @@ class DeepNeuralNetwork:
         self.__cache.update({"A0": X})
         for layer in range(1, self.__L+1):
             Z_t = (np.matmul(self.__weights[f"W{layer}"],
-                            self.__cache[f"A{layer-1}"])
-                            + self.__weights[f"b{layer}"])
+                             self.__cache[f"A{layer-1}"])
+                   + self.__weights[f"b{layer}"])
             A_t = self.sigmoid(Z_t)
             self.__cache.update({f"A{layer}": A_t})
         return A_t, self.__cache
