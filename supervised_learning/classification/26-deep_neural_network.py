@@ -147,7 +147,7 @@ class DeepNeuralNetwork:
 
     def save(self, filename):
         '''saving'''
-        obj = DeepNeuralNetwork(3, 5)
+        obj = DeepNeuralNetwork(3, [4, 5, 6])
 
         if not (".pkl" in filename):
             filename = f"{filename}.pkl"
