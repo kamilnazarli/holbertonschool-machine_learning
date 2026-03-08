@@ -153,13 +153,16 @@ class DeepNeuralNetwork:
         with open(filename, 'wb') as f:
             pickle.dump(self, f)
 
+    @staticmethod
+    def load(filename):
+        '''loading'''
         if not (os.path.exists(filename)):
             return None
 
         with open(filename, 'rb') as f:
             loaded_data = pickle.load(f)
         return loaded_data
-        
+
     @staticmethod
     def sigmoid(Z):
         '''sigmoid'''
