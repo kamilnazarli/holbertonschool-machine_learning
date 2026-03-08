@@ -147,13 +147,11 @@ class DeepNeuralNetwork:
 
     def save(self, filename):
         '''saving'''
-        obj = DeepNeuralNetwork(3, [4, 5, 6])
-
         if not (".pkl" in filename):
             filename = f"{filename}.pkl"
 
         with open(filename, 'wb') as f:
-            pickle.dump(obj, f)
+            pickle.dump(self, f)
 
         if not (os.path.exists(filename)):
             return None
