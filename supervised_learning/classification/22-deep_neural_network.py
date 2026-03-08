@@ -91,7 +91,7 @@ class DeepNeuralNetwork:
             if layer > 1:
                 A_prev_layer = cache[f"A{layer-1}"]
                 dZ = np.dot(Wl.T, dZ) * (A_prev_layer * (1 - A_prev_layer))
-    
+
     def train(self, X, Y, iterations=5000, alpha=0.05):
         '''training'''
         if not (isinstance(iterations, int)):
@@ -101,7 +101,7 @@ class DeepNeuralNetwork:
         if not (isinstance(alpha, float)):
             raise TypeError("alpha must be a float")
         if alpha <= 0:
-            raise ValueError("alpha must be positive") 
+            raise ValueError("alpha must be positive")
         for i in range(iterations):
             cache = self.forward_prop(X)[1]
             self.gradient_descent(Y, cache, alpha)
