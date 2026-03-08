@@ -81,17 +81,19 @@ class DeepNeuralNetwork:
 
         for layer in range(self.__L, 0, -1):
             A_prev = cache[f"A{layer-1}"]
+            Wl = self.__weights[f"W{layer}"]
 
             dW = (1 / m) * np.matmul(dZ[layer], A_prev.T)
             db = (1 / m) * np.sum(dZ[layer], axis=1, keepdims=True)
 
-            self.__weights[f"W{layer}"] -= alpha * dW
-            self.__weights[f"b{layer}"] -= alpha * db
+            self.__weights[f"W{layer}"] = (self.__weights[f"W{layer}"] -
+                                           alpha * dW)
+            self.__weights[f"b{layer}"] = (self.__weights[f"b{layer}"] -
+                                           alpha * db)
 
             if layer > 1:
-                dZ[layer-1] = np.dot(weights_copy[f"W{layer}"].T, dZ[layer])
-                dZ[layer-1] = (dZ[layer-1] * cache[f"A{layer-1}"] *
-                               (1 - cache[f"A{layer-1}"]))
+                A_prev_layer = cache[f"A{layer-1}"]
+                dZ = np.dot(Wl.T, dZ) * (A_prev_layer * (1 - A_prev_layer))
 
     @staticmethod
     def sigmoid(Z):
