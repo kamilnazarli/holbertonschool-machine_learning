@@ -58,6 +58,12 @@ class DeepNeuralNetwork:
             self.__cache.update({f"A{layer}": A_t})
         return A_t, self.__cache
 
+    def cost(self, Y, A):
+        '''cost function'''
+        cost_f = - (Y * np.log(A) + (1 - Y) *
+                   np.log(1.0000001 - A))
+        return np.mean(cost_f)
+
     @staticmethod
     def sigmoid(Z):
         '''sigmoid'''
