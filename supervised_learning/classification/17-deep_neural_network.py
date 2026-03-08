@@ -36,10 +36,12 @@ class DeepNeuralNetwork:
     def L(self):
         '''getter'''
         return self.__L
+
     @property
     def cache(self):
         '''getter'''
         return self.__cache
+
     @property
     def weights(self):
         '''getter'''
