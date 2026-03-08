@@ -9,14 +9,12 @@ class DeepNeuralNetwork:
         '''init documented'''
         if not (isinstance(nx, int)):
             raise TypeError("nx must be an integer")
-        if nx == 0:
-            return None
         if nx < 1:
-            raise TypeError("nx must be a positive integer")
+            raise ValueError("nx must be a positive integer")
         if not (isinstance(layers, list)) or layers == []:
             raise TypeError("layers must be a list of positive integers")
         if any(layers) <= 0:
-            raise TypeError("layers must be a list of positive integers")
+            raise ValueError("layers must be a list of positive integers")
         self.L = len(layers)
         self.cache = {}
         self.weights = {}
