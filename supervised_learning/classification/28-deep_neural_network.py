@@ -66,7 +66,10 @@ class DeepNeuralNetwork:
                              self.__cache[f"A{layer-1}"])
                    + self.__weights[f"b{layer}"])
             if layer != self.__L:
-                A_t = self.__activation(Z_t)
+                if self.__activation == "sig":
+                    A_t = self.sigmoid(Z_t)
+                else:
+                    A_t = self.tanh(Z_t)
             else:
                 A_t = self.softmax(Z_t)
             self.__cache.update({f"A{layer}": A_t})
