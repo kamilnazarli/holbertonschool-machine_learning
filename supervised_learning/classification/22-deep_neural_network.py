@@ -102,10 +102,11 @@ class DeepNeuralNetwork:
             raise TypeError("alpha must be a float")
         if alpha <= 0:
             raise ValueError("alpha must be positive") 
-        for i in range(iterations+1):
+        for i in range(iterations):
             cache = self.forward_prop(X)[1]
             self.gradient_descent(Y, cache, alpha)
         return self.evaluate(X, Y)
+
     @staticmethod
     def sigmoid(Z):
         '''sigmoid'''
