@@ -110,7 +110,8 @@ class DeepNeuralNetwork:
             self.gradient_descent(Y, cache, alpha)
         return self.evaluate(X, Y)
 
-    def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True, graph=True, step=100):
+    def train(self, X, Y, iterations=5000, alpha=0.05,
+              verbose=True, graph=True, step=100):
         '''upgraded training'''
         if not (isinstance(iterations, int)):
             raise TypeError("iterations must be an integer")
