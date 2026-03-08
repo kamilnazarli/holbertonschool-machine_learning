@@ -67,7 +67,7 @@ class DeepNeuralNetwork:
     def evaluate(self, X, Y):
         '''evaluation'''
         A = self.forward_prop(X)[0]
-        pred = np.where(pred >= 0.5, 1, 0)
+        pred = np.where(A >= 0.5, 1, 0)
         return pred, self.cost(Y, A)
 
     @staticmethod
