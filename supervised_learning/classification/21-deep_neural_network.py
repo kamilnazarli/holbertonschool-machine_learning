@@ -73,7 +73,7 @@ class DeepNeuralNetwork:
     def gradient_descent(self, Y, cache, alpha=0.05):
         '''gradient descent'''
         m = Y.shape[1]
-        for layer in range(len(cache)-1, 0, -1):
+        for layer in range(len(cache)-1, 1, -1):
             dZ = cache[f"A{layer}"] - Y
             dW = (1 / m) * np.matmul(dZ, cache[f"A{layer - 1}"].T)
             db = (1 / m) * np.sum(dZ, axis=1, keepdims=True)
