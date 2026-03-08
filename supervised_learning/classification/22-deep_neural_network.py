@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 '''module documented'''
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 class DeepNeuralNetwork:
@@ -107,6 +108,40 @@ class DeepNeuralNetwork:
             self.gradient_descent(Y, cache, alpha)
         return self.evaluate(X, Y)
 
+    def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True, graph=True, step=100):
+        '''upgraded training'''
+        if not (isinstance(iterations, int)):
+            raise TypeError("iterations must be an integer")
+        if iterations <= 0:
+            raise ValueError("iterations must be a positive integer")
+        if not (isinstance(alpha, float)):
+            raise TypeError("alpha must be a float")
+        if alpha <= 0:
+            raise ValueError("alpha must be positive")
+        if not (isinstance(step, int)):
+            raise TypeError("step must be an integer")
+        if iterations <= 0 or step >= iterations:
+            raise ValueError("step must be positive and <= iterations")
+        if verbose or graph:
+            if not (isinstance(step, int)):
+                raise TypeError("iterations must be an integer")
+            if step <= 0 or step >= iterations:
+                raise TypeError("step must be positive and <= iterations")
+        iteration_s, cost_s = [], []
+        for i in range(iterations+1):
+            A, cache = self.forward_prop(X)
+            self.gradient_descent(Y, cache, alpha)
+            if verbose and i % step == 0:
+                cost_f = self.cost(Y, A)
+                print(f"Cost after {i} iterations: {cost_f}")
+                iteration_s.append(i)
+                cost_s.append(cost_f)
+        if graph:
+            plt.plot(iteration_s, cost_s)
+            plt.title("Training Cost")
+            plt.xlabel("iteration")
+            plt.ylabel("cost")
+        return self.evaluate(X, Y)
     @staticmethod
     def sigmoid(Z):
         '''sigmoid'''
