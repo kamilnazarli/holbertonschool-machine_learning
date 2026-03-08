@@ -5,6 +5,10 @@ import numpy as np
 
 def one_hot_encode(Y, classes):
     """one-hot-encoding"""
+    if not (isinstance(Y, np.ndarray)):
+        return None
+    if not (isinstance(classes, int)):
+        return None
     res = np.zeros((len(Y), classes))
     for i in range(len(Y)):
         temp = np.zeros((1, classes))
