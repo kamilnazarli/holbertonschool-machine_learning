@@ -127,7 +127,7 @@ class DeepNeuralNetwork:
         if verbose or graph:
             if not (isinstance(step, int)):
                 raise TypeError("iterations must be an integer")
-            if step <= 0 or step >= iterations:
+            if step <= 0 or step > iterations:
                 raise TypeError("step must be positive and <= iterations")
         iteration_s, cost_s = [], []
         for i in range(iterations+1):
