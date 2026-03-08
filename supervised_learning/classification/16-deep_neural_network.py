@@ -10,7 +10,7 @@ class DeepNeuralNetwork:
         if not (isinstance(nx, int)):
             raise TypeError("nx must be an integer")
         if nx == 0:
-            return "OK"
+            return None
         if nx < 1:
             raise TypeError("nx must be a positive integer")
         if not (isinstance(layers, list)) or layers == []:
