@@ -138,6 +138,8 @@ class DeepNeuralNetwork:
                 print(f"Cost after {i} iterations: {cost_f}")
                 iteration_s.append(i)
                 cost_s.append(cost_f)
+        if i < iterations:
+            self.gradient_descent(Y, cache, alpha)
         if graph:
             plt.plot(iteration_s, cost_s)
             plt.title("Training Cost")
