@@ -5,5 +5,7 @@ import numpy as np
 
 def one_hot_decode(one_hot):
     '''one hot decoding'''
-    res = one_hot.T
-    return np.argmax(res, axis=1)
+    temp = np.zeros((one_hot.shape[1],), dtype=int)
+    for i in range(one_hot.shape[0]):
+        temp[i] = np.argmax(one_hot[i])
+    return temp
