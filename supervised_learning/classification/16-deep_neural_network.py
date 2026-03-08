@@ -18,10 +18,12 @@ class DeepNeuralNetwork:
         self.L = len(layers)
         self.cache = {}
         self.weights = {}
-        for l in range(1, len(layers)):
+        # L = 3     1, 2 
+        for l in range(1, self.L):
             self.W = (np.random.randn(layers[l], layers[l-1]) *
                       np.sqrt(2/layers[l-1]))
-            self.b = np.zeros((1, layers[l-1]))
+            self.b = np.zeros((layers[l], 1))
             self.weights.update({f"W{l}": self.W})
             self.weights.update({f"b{l}": self.b})
             # W1 : W  randn(3, 5)
+            # b1 : b zeros()
