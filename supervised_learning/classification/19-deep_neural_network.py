@@ -61,7 +61,7 @@ class DeepNeuralNetwork:
     def cost(self, Y, A):
         '''cost function'''
         cost_f = - (Y * np.log(A) + (1 - Y) *
-                   np.log(1.0000001 - A))
+                    np.log(1.0000001 - A))
         return np.mean(cost_f)
 
     @staticmethod
