@@ -27,7 +27,7 @@ class DeepNeuralNetwork:
             W = (np.random.randn(layers[l], prev) *
                       np.sqrt(2 / prev))
             b = np.zeros((layers[l], 1))
-            self.weights.update({f"W{l}": W})
-            self.weights.update({f"b{l}": b})
+            self.weights.update({f"W{l+1}": W})
+            self.weights.update({f"b{l+1}": b})
             # W1 : W  randn(3, 5)
             # b1 : b zeros()
