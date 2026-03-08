@@ -75,7 +75,7 @@ class DeepNeuralNetwork:
         m = Y.shape[1]
         for layer in range(len(cache)-1, 0, -1):
             dZ = cache[f"A{layer}"] - Y
-            dW = (1 / m) * dZ * cache[f"A{layer - 1}"].T
+            dW = (1 / m) * np.matmul(dZ, cache[f"A{layer - 1}"].T)
             db = (1 / m) * np.sum(dZ, axis=1, keepdims=True)
 
             self.__weights[f"W{layer}"] -= alpha * dW
