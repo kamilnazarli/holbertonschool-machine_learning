@@ -18,8 +18,7 @@ class DeepNeuralNetwork:
         self.L = len(layers)
         self.cache = {}
         self.weights = {}
-        # L = 3     1, 2 
-        np.random.seed(0)
+        # L = 3     1, 2
         for l in range(1, self.L):
             W = (np.random.randn(layers[l], layers[l-1]) *
                       np.sqrt(2 / layers[l-1]))
