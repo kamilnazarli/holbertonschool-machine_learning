@@ -189,7 +189,7 @@ class DeepNeuralNetwork:
     @staticmethod
     def tanh(Z):
         '''tanh'''
-        return (np.e ** Z - np.e ** (-Z)) / (np.e ** Z + np.e ** (-Z))
+        return (np.exp(Z) - np.exp(-Z)) / (np.exp(Z) + np.exp(-Z))
 
     @staticmethod
     def softmax(Z):
