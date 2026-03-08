@@ -69,7 +69,7 @@ class DeepNeuralNetwork:
                 if self.__activation == "sig":
                     A_t = self.sigmoid(Z_t)
                 else:
-                    A_t = self.tanh(Z_t)
+                    A_t = np.tanh(Z_t)
             else:
                 A_t = self.softmax(Z_t)
             self.__cache.update({f"A{layer}": A_t})
@@ -185,11 +185,6 @@ class DeepNeuralNetwork:
     def sigmoid(Z):
         '''sigmoid'''
         return 1 / (1 + np.e ** (-Z))
-
-    @staticmethod
-    def tanh(Z):
-        '''tanh'''
-        return (np.exp(Z) - np.exp(-Z)) / (np.exp(Z) + np.exp(-Z))
 
     @staticmethod
     def softmax(Z):
