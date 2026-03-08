@@ -31,18 +31,16 @@ class DeepNeuralNetwork:
             self.__weights.update({f"b{layer+1}": b})
             # W1 : W  randn(3, 5)
             # b1 : b zeros()
-        
-        @property
-        def L(self):
-            '''getter'''
-            return self.__L
-        
-        @property
-        def cache(self):
-            '''getter'''
-            return self.__cache
 
-        @property
-        def weights(self):
-            '''getter'''
-            return self.__weights
+    @property
+    def L(self):
+        '''getter'''
+        return self.__L
+    @property
+    def cache(self):
+        '''getter'''
+        return self.__cache
+    @property
+    def weights(self):
+        '''getter'''
+        return self.__weights
