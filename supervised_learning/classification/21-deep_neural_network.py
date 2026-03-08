@@ -73,9 +73,6 @@ class DeepNeuralNetwork:
     def gradient_descent(self, Y, cache, alpha=0.05):
         '''gradient descent'''
         m = Y.shape[1]
-        # dZ = {}
-        weights_copy = self.__weights.copy()
-
         A_last = cache[f"A{self.__L}"]
         dZ = A_last - Y
 
