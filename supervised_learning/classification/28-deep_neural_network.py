@@ -109,7 +109,10 @@ class DeepNeuralNetwork:
 
             if layer > 1:
                 A_prev_layer = cache[f"A{layer-1}"]
-                dZ = np.dot(Wl.T, dZ) * (A_prev_layer * (1 - A_prev_layer))
+                if self.__activation == 'sig':
+                    dZ = np.dot(Wl.T, dZ) * (A_prev_layer * (1 - A_prev_layer))
+                else:
+                    dZ = np.dot(Wl.T, dZ) * (1 - A_prev_layer ** 2)
 
     def train(self, X, Y, iterations=5000, alpha=0.05):
         '''training'''
