@@ -88,7 +88,8 @@ class DeepNeuralNetwork:
 
             if layer > 1:
                 dZ[layer-1] = np.dot(weights_copy[f"W{layer}"].T, dZ[layer])
-                dZ[layer-1] = dZ[layer-1] * (cache[f"A{layer-1}"] > 0)
+                dZ[layer-1] = (dZ[layer-1] * cache[f"A{layer-1}"] *
+                               (1 - cache[f"A{layer-1}"]))
 
     @staticmethod
     def sigmoid(Z):
