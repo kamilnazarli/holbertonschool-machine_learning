@@ -11,4 +11,4 @@ def one_hot(labels, classes=None):
         num_tokens=classes,
         output_mode="one_hot"
     )
-    return layer(labels)
+    return layer(labels).numpy()
