@@ -10,7 +10,7 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     x = inputs
     for i in range(len(layers)):
         x = K.layers.Dense(
-            layers[i], 
+            layers[i],
             activation=activations[i],
             kernel_regularizer=K.regularizers.l2(lambtha)
         )(x)
