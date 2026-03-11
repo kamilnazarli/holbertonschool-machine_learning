@@ -9,4 +9,4 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     model.add(K.layers.Dense(layers,
                              input_shape=(nx,),
                              activation=activations))
-    return model
+    return model.summary()
