@@ -7,7 +7,7 @@ def train_model(network, data, labels, batch_size, epochs, verbose=True, shuffle
     '''funcion documented'''
     history = network.fit(x=data,
                           y=labels,
-                          epochs=epochs,
-                          batch_size=batch_size
+                          batch_size=batch_size,
+                          epochs=epochs
                           )
     return history
