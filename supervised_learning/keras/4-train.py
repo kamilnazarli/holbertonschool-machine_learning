@@ -5,6 +5,11 @@ import tensorflow.keras as K
 
 def train_model(network, data, labels, batch_size, epochs, verbose=True, shuffle=False):
     '''funcion documented'''
+    network.compile(
+        optimizer="adam",
+        loss="categorical_crossentropy",
+        metrics=["accuracy"]
+    )
     history = network.fit(data,
                           labels,
                           epochs=epochs,
