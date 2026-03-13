@@ -16,7 +16,7 @@ def train_model(network, data, labels, batch_size, epochs,
         if learning_rate_decay:
             lr_schedule = K.optimizers.schedules.InverseTimeDecay(
                 initial_learning_rate=alpha,
-                decay_steps=epochs
+                decay_steps=epochs,
                 decay_rate=decay_rate,
                 staircase=True
             )
