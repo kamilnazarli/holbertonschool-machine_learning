@@ -18,6 +18,7 @@ def train_model(network, data, labels, batch_size, epochs,
     if validation_data is not None and learning_rate_decay:
         K.backend.set_value(network.optimizer.learning_rate,
                             alpha)
+
         def decay_lr(epoch):
             return alpha / (1 + decay_rate * epoch)
         lr_callback = K.callbacks.LearningRateScheduler(decay_lr,
