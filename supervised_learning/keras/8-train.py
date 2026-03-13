@@ -32,7 +32,7 @@ def train_model(network, data, labels,
             monitor="val_loss",
             save_best_only=True,
             mode="min",
-            verbose=1
+            verbose=0
         )
         callbacks.append(checkpoint)
     return network.fit(x=data, y=labels,
