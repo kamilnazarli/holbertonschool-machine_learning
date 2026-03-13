@@ -22,7 +22,8 @@ def train_model(network, data, labels, batch_size, epochs,
             def decay_lr(epoch):
                 return alpha / (1 + decay_rate * epoch)
 
-            lr_callback = K.callbacks.LearningRateScheduler(decay_lr)
+            lr_callback = K.callbacks.LearningRateScheduler(decay_lr,
+                                                            verbose=1)
             callbacks.append(lr_callback)        
     return network.fit(x=data, y=labels,
                        batch_size=batch_size, epochs=epochs,
