@@ -10,29 +10,21 @@ def train_model(network, data, labels, batch_size, epochs,
     '''
     function documented
     '''
-    if validation_data is not None:
+    callbacks=[]
+    if validation_data is not None and early_stopping:
         early_stopping = K.callbacks.EarlyStopping(monitor="val_loss",
                                                    patience=patience)
-        if learning_rate_decay:
-            lr_schedule = K.optimizers.schedules.InverseTimeDecay(
-                initial_learning_rate=alpha,
-                decay_steps=epochs,
-                decay_rate=decay_rate,
-                staircase=True
-            )
-            opt = K.optimizers.Adam(learning_rate=lr_schedule)
-            network.compile(
-                loss="categorical_crossentropy",
-                optimizer=opt,
-                metrics=["accuracy"]
-            )
+        callbacks.append(early_stopping)
+    if validation_data is not None and learning_rate_decay:
+            K.backend.set_value(network.optimizer.learning_rate,
+                                alpha)
 
-        return network.fit(x=data, y=labels,
-                           batch_size=batch_size, epochs=epochs,
-                           callbacks=[early_stopping],
-                           verbose=verbose, shuffle=shuffle,
-                           validation_data=validation_data)
-    else:
-        return network.fit(x=data, y=labels, batch_size=batch_size,
-                           epochs=epochs,
-                           verbose=verbose, shuffle=shuffle)
+            def decay_lr(epoch):
+                return alpha / (1 + decay_rate * epoch)
+
+            lr_callback = K.callbacks.LearningRateScheduler(decay_lr)
+            callbacks.append(lr_callback)        
+    return network.fit(x=data, y=labels,
+                       batch_size=batch_size, epochs=epochs,
+                       callbacks=callbacks, verbose=verbose,
+                       shuffle=shuffle, validation_data=validation_data)
