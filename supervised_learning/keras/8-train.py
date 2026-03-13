@@ -26,7 +26,7 @@ def train_model(network, data, labels,
         lr_callback = K.callbacks.LearningRateScheduler(decay_lr,
                                                         verbose=1)
         callbacks.append(lr_callback)
-    if save_best:
+    if validation_data is not None and save_best:
         checkpoint = K.callbacks.ModelCheckpoint(
             filepath=filepath,
             monitor="val_loss",
