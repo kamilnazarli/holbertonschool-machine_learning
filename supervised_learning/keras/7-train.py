@@ -13,6 +13,13 @@ def train_model(network, data, labels, batch_size, epochs,
     if validation_data is not None:
         early_stopping = K.callbacks.EarlyStopping(monitor="val_loss",
                                                    patience=patience)
+        if learning_rate_decay:
+            lr_schedule = K.optimizers.schedules.InverseTimeDecay(
+                initial_learning_rate=alpha,
+                decay_steps=epochs
+                decay_rate=decay_rate,
+                staircase=True
+            )
         return network.fit(x=data, y=labels,
                            batch_size=batch_size, epochs=epochs,
                            callbacks=[early_stopping],
