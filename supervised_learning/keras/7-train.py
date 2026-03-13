@@ -20,9 +20,10 @@ def train_model(network, data, labels, batch_size, epochs,
                 decay_rate=decay_rate,
                 staircase=True
             )
+
         return network.fit(x=data, y=labels,
                            batch_size=batch_size, epochs=epochs,
-                           callbacks=[early_stopping],
+                           callbacks=[early_stopping, lr_schedule],
                            verbose=verbose, shuffle=shuffle,
                            validation_data=validation_data)
     else:
