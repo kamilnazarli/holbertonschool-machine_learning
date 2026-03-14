@@ -5,7 +5,7 @@ import numpy as np
 
 def shuffle_data(X, Y):
     '''function'''
-    np.random.seed(0)
-    X_shuffled = np.random.permutation(X)
-    y_shuffled = np.random.permutation(Y)
+    indices = np.random.permutation(len(X))
+    X_shuffled = X[indices]
+    y_shuffled = Y[indices]
     return X_shuffled, y_shuffled
