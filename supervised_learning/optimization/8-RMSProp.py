@@ -5,7 +5,7 @@ import tensorflow as tf
 
 def create_RMSProp_op(alpha, beta2, epsilon):
     '''RMSProp in keras'''
-    return tf.keras.optimizers.RMSProp(
+    return tf.keras.optimizers.RMSprop(
         learning_rate=alpha,
         momentum=beta2,
         epsilon=epsilon
