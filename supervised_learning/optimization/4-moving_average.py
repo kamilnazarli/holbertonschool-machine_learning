@@ -4,6 +4,7 @@ import numpy as np
 
 
 def moving_average(data, beta):
+    '''method'''
     ewa = []
     temp = 0
     for i in range(1, len(data)+1):
@@ -11,4 +12,3 @@ def moving_average(data, beta):
         temp_c= temp / (1 - beta ** i)
         ewa.append(temp_c)
     return ewa
-
