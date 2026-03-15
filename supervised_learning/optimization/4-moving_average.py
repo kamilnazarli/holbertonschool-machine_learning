@@ -9,6 +9,6 @@ def moving_average(data, beta):
     temp = 0
     for i in range(1, len(data) + 1):
         temp = beta * temp + (1 - beta) * data[i - 1]
-        temp_c= temp / (1 - beta ** i)
+        temp_c = temp / (1 - beta ** i)
         ewa.append(temp_c)
     return ewa
