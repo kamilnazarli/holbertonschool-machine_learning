@@ -4,9 +4,8 @@ import numpy as np
 
 
 def moving_average(data, beta):
-    '''method'''
-    mat = [0]
+    """method"""
+    ewa = [data[0]]
     for i in range(1, len(data)):
-        mat.append(beta * mat[i - 1] + (1 - beta) * data[i])
-        mat[i] = mat[i] / (1 - beta ** i)
-    return mat
+        ewa.append(beta * ewa[i - 1] + (1 - beta) * data[i])
+    return ewa
