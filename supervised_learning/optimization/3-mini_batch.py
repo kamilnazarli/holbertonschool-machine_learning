@@ -9,12 +9,12 @@ def create_mini_batches(X, Y, batch_size):
     n = 1
     for i in range(0, len(X), batch_size):
         if batch_size * n > len(X):
-            mini_batches.append(
-            X_shuffled[i: len(X)],
-            y_shuffled[i: len(X)])
+            mini_batches.append((
+                X_shuffled[i: len(X)],
+                y_shuffled[i: len(X)]))
         else:
-            mini_batches.append(
+            mini_batches.append((
                 X_shuffled[i: batch_size * n],
-                y_shuffled[i: batch_size * n])
+                y_shuffled[i: batch_size * n]))
         n += 1
     return mini_batches
