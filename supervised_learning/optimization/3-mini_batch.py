@@ -18,3 +18,4 @@ def create_mini_batches(X, Y, batch_size):
                 X_shuffled[i: batch_size * n],
                 y_shuffled[i: batch_size * n])
         n += 1
+    return mini_batches
