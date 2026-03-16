@@ -1,0 +1,10 @@
+#!/usr/bin/env python3
+'''module documented'''
+import numpy as np
+
+
+def batch_norm(Z, gamma, beta, epsilon):
+    '''Batch Normalization'''
+    mean = np.mean(Z, axis=1)
+    std= np.std(Z, axis=1)
+    return (Z - mean) / (np.sqrt(std ** 2) + epsilon)
