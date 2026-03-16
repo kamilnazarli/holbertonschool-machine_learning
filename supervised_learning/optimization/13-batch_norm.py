@@ -7,4 +7,5 @@ def batch_norm(Z, gamma, beta, epsilon):
     '''Batch Normalization'''
     mean = np.mean(Z, axis=1)
     std= np.std(Z, axis=1)
-    return (Z - mean) / (np.sqrt(std ** 2) + epsilon)
+    norm = (Z - mean) / (np.sqrt(std ** 2) + epsilon)
+    return gamma * Z + beta
