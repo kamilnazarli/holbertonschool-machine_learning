@@ -5,4 +5,6 @@ import numpy as np
 
 def learning_rate_decay(alpha, decay_rate, global_step, decay_step):
     '''learning rate decay'''
-    alpha = alpha / (1 + decay_rate * )
+    time_interval = global_step // decay_step
+    alpha = alpha / (1 + decay_rate * time_interval)
+    return alpha
