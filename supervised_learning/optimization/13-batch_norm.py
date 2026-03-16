@@ -8,4 +8,4 @@ def batch_norm(Z, gamma, beta, epsilon):
     mean = np.mean(Z, axis=1)
     std= np.std(Z, axis=1)
     norm = (Z - mean) / (np.sqrt(std ** 2) + epsilon)
-    return gamma * Z + beta
+    return gamma * norm + beta
