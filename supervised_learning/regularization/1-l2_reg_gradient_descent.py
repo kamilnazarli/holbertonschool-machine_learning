@@ -7,7 +7,7 @@ def l2_reg_gradient_descent(Y, weights, cache, alpha, lamtha, L):
     '''l2 gradient descent'''
     m = Y.shape[1]  # number of data points
     k = Y.shape[0]  # classes
-    dz = cache[f"A{L}"]
+    dZ = cache[f"A{L}"]
     for i in range(L, 0, -1):
         W = weights[f"W{i}"]
         A_prev = cache[f"A{i - 1}"]
