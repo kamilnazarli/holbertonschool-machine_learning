@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+'''module documented'''
+import numpy as np
+
+
+def softmax(x):
+    '''softmax implementation'''
+    e_x = np.exp(x - np.max(x))
+    return e_x / e_x.sum()
+
+def dropout_forward_prop(X, weights, L, keep_prob):
+    '''forward prop with dropout'''
+    outputs = {X}
+    for i in range(1, L + 1):
+        W = weights[f"W{i}"]
+        bias = weights[f"b{i}"]
+        Z = np.matmul(W, X) + bias
+        if i != L:
+            A = np.tanh(Z)
+        else:
+            A = softmax(Z)
+        d = (np.random.randn(A.shape[0], A.shape[1]) < keep_prob)
+        A = A * d
+        outputs[f"A{i}"] = A
+        outputs[f"D{i}"] = d
+    return outputs
