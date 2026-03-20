@@ -5,8 +5,8 @@ import numpy as np
 
 def softmax(x):
     '''softmax implementation'''
-    e_x = np.exp(x - np.max(x))
-    return e_x / e_x.sum()
+    e_x = np.exp(x - np.max(x, axis=0, keepdims=True))
+    return e_x / np.sum(e_x, axis=0, keepdims=True)
 
 def dropout_forward_prop(X, weights, L, keep_prob):
     '''forward prop with dropout'''
@@ -20,7 +20,7 @@ def dropout_forward_prop(X, weights, L, keep_prob):
             d = (np.random.rand(A.shape[0], A.shape[1]) < keep_prob)
             A = A * d
             A /= keep_prob
-            # outputs[f"D{i}"] = d
+            outputs[f"D{i}"] = d
         else:
             A = softmax(Z)
 
