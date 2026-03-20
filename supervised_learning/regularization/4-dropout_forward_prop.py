@@ -17,10 +17,12 @@ def dropout_forward_prop(X, weights, L, keep_prob):
         Z = np.matmul(W, outputs[f"A{i - 1}"]) + bias
         if i != L:
             A = np.tanh(Z)
+            d = (np.random.randn(A.shape[0], A.shape[1]) < keep_prob)
+            A = A * d
+            A /= keep_prob
+            outputs[f"D{i}"] = d
         else:
             A = softmax(Z)
-        d = (np.random.randn(A.shape[0], A.shape[1]) < keep_prob)
-        A = A * d
+
         outputs[f"A{i}"] = A
-        outputs[f"D{i}"] = d
     return outputs
