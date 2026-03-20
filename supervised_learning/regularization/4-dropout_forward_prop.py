@@ -10,7 +10,7 @@ def softmax(x):
 
 def dropout_forward_prop(X, weights, L, keep_prob):
     '''forward prop with dropout'''
-    outputs = {X}
+    outputs = {"A0": X}
     for i in range(1, L + 1):
         W = weights[f"W{i}"]
         bias = weights[f"b{i}"]
