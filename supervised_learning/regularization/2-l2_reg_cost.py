@@ -5,4 +5,4 @@ import tensorflow as tf
 
 def l2_reg_cost(cost, model):
     '''cost calculation'''
-    return model.losses
+    return cost + tf.add_n(model.losses)
