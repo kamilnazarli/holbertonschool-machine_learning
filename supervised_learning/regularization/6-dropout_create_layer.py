@@ -3,7 +3,7 @@
 import tensorflow as tf
 
 
-def dropout_create_layer(prev, n, activation, keep_prob,training=True):
+def dropout_create_layer(prev, n, activation, keep_prob, training=True):
     '''creating a layer of nn using dropout'''
     layer = tf.keras.layers.Dense(
         n,
