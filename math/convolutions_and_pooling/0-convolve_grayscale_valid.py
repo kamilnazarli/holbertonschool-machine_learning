@@ -9,7 +9,6 @@ def convolve_grayscale_valid(images, kernel):
     w, kw = images.shape[2], kernel.shape[1]
     oh, ow = (h - kh + 1), (w - kw + 1)
     output = np.zeros(shape=(images.shape[0], oh, ow))
-    
     for row in range(oh):
         for col in range(ow):
             patch = images[:, row:row+kh, col:col+kw]
