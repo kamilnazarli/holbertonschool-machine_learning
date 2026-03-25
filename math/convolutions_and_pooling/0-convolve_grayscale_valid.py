@@ -10,8 +10,8 @@ def convolve_grayscale_valid(images, kernel):
     oh, ow = (h - kh + 1), (w - kw + 1)
     output = np.zeros(shape=(images.shape[0], oh, ow))
     
-    for row in range(h):
-        for col in range(w):
+    for row in range(kh):
+        for col in range(kw):
             patch = images[:, row:row+kh, col:col+kw]
             output[:, row, col] = np.sum(patch * kernel, axis=(1, 2))
     return output
