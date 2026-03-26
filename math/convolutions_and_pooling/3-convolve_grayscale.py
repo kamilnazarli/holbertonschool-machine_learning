@@ -17,7 +17,7 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
             pw = (kw - 1) // 2
         else:
             pw = int(np.ceil((kw - 1) / 2))
-        oh, ow = h, w
+        oh, ow = int(np.ceil(h / sh)), int(np.ceil(w / sw))
 
     elif padding == "valid":
         oh, ow = (int(np.ceil((h - kh + 1) / sh)),
@@ -25,8 +25,8 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
 
     else:
         ph, pw = padding
-        oh, ow = (((h - kh + 2 * ph) / sh + 1),
-              ((w - kw + 2 * pw) / sw + 1))
+        oh, ow = (int(np.ceil((h - kh + 2 * ph) / sh)) + 1,
+              (int(np.ceil((w - kw + 2 * pw) / sw)) + 1))
 
         images = np.pad(images,
                         ((0, 0), (ph, ph), (pw, pw)),
@@ -34,6 +34,6 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
     output = np.zeros(shape=(images.shape[0], oh, ow))
     for row in range(oh):
         for col in range(ow):
-            patch = images[:, row:row+kh+sh, col:col+kw+sw]
+            patch = images[:, row:row+kh, col:col+kw]
             output[:, row, col] = np.sum(patch * kernel, axis=(1, 2))
     return output
