@@ -3,7 +3,7 @@
 import numpy as np
 
 
-def convolve_grayscale(images, kernel,
+def convolve_channels(images, kernel,
                        padding='same', stride=(1, 1)):
     '''convolving with channels'''
     h, kh = images.shape[1], kernel.shape[0]
