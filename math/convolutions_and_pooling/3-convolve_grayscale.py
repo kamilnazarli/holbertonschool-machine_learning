@@ -3,7 +3,8 @@
 import numpy as np
 
 
-def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
+def convolve_grayscale(images, kernel,
+                       padding='same', stride=(1, 1)):
     '''same convolution'''
     h, kh = images.shape[1], kernel.shape[0]
     w, kw = images.shape[2], kernel.shape[1]
@@ -12,8 +13,8 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
         oh, ow = int(np.ceil(h / sh)), int(np.ceil(h / sh))
         ph = np.max((oh - 1) * sh + kh - h, 0)
         pw = np.max((ow - 1) * sw + kw - w, 0)
-        pt = int(np.floor(ph / 2))
-        pl = int(np.floor(pw / 2))
+        pt = ph // 2
+        pl = pw // 2
         pb, pr = ph - pt, pw - pl
         images = np.pad(images,
                         ((0, 0), (pt, pb), (pl, pr)),
@@ -35,5 +36,6 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
         for col in range(ow):
             patch = images[:, row * sh : row * sh + kh,
                            col * sw : col * sw + kw]
-            output[:, row, col] = np.sum(patch * kernel, axis=(1, 2))
+            output[:, row, col] = np.sum(patch * kernel,
+                                         axis=(1, 2))
     return output
