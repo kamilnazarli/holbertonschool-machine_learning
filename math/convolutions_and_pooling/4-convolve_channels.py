@@ -29,7 +29,7 @@ def convolve_channels(images, kernel,
         for col in range(ow):
             patch = images[:, row * sh: row * sh + kh,
                            col * sw: col * sw + kw, :]
-            output[:, row, col, :] = np.sum(patch[:, :, :, c] * kernel,
+            output[:, row, col, :] = np.sum(patch[..., np.newaxis] * kernel,
                                             axis=(1, 2, 3))
             c += 1
     return output
