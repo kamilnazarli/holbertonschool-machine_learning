@@ -4,7 +4,7 @@ import numpy as np
 
 
 def convolve_channels(images, kernel,
-                       padding='same', stride=(1, 1)):
+                      padding='same', stride=(1, 1)):
     '''convolving with channels'''
     h, kh = images.shape[1], kernel.shape[0]
     w, kw = images.shape[2], kernel.shape[1]
@@ -28,5 +28,5 @@ def convolve_channels(images, kernel,
             patch = images[:, row * sh: row * sh + kh,
                            col * sw: col * sw + kw, :]
             output[:, row, col] = np.sum(patch * kernel,
-                                            axis=(1, 2, 3))
+                                         axis=(1, 2, 3))
     return output
