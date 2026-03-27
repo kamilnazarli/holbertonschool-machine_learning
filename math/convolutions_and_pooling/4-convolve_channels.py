@@ -8,7 +8,7 @@ def convolve_channels(images, kernel,
     '''convolving with channels'''
     h, kh = images.shape[1], kernel.shape[0]
     w, kw = images.shape[2], kernel.shape[1]
-    od = kernel.shape[3]
+    od = kernel.shape[2]
     sh, sw = stride
     if padding == "same":
         ph = int(((h - 1) * sh + kh - h) / 2) + 1
