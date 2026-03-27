@@ -8,6 +8,7 @@ def convolve_channels(images, kernel,
     '''convolving with channels'''
     h, kh = images.shape[1], kernel.shape[0]
     w, kw = images.shape[2], kernel.shape[1]
+    od = images.shape[3]
     sh, sw = stride
     if padding == "same":
         ph = int(((h - 1) * sh + kh - h) / 2) + 1
@@ -22,7 +23,7 @@ def convolve_channels(images, kernel,
     images = np.pad(images,
                     ((0, 0), (ph, ph), (pw, pw)),
                     constant_values=(0))
-    output = np.zeros(shape=(images.shape[0], oh, ow))
+    output = np.zeros(shape=(images.shape[0], oh, ow, od))
     for row in range(oh):
         for col in range(ow):
             patch = images[:, row * sh: row * sh + kh,
