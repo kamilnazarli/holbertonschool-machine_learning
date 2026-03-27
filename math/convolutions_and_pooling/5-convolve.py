@@ -27,6 +27,6 @@ def convolve(images, kernels, padding='same', stride=(1, 1)):
         for col in range(ow):
             patch = images[:, row * sh: row * sh + kh,
                            col * sw: col * sw + kw, :]
-            output[:, row, col, :] = np.sum(patch * kernels,
+            output[:, row, col, :] = np.sum(patch[..., np.newaxis] * kernels,
                                             axis=(1, 2, 3))
     return output
