@@ -17,5 +17,8 @@ def pool(images, kernel_shape, stride, mode='max'):
         for col in range(ow):
             patch = images[:, row * sh: row * sh + kh,
                            col * sw: col * sw + kw, :]
-            output[:, row, col, :] = np.max(patch, axis=(1, 2))
+            if mode == "max":
+                output[:, row, col, :] = np.max(patch, axis=(1, 2))
+            elif mode == "avg":
+                output[:, row, col, :] = np.mean(patch, axis=(1, 2))
     return output
