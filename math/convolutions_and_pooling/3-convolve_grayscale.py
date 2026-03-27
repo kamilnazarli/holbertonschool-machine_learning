@@ -9,7 +9,7 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
     w, kw = images.shape[2], kernel.shape[1]
     sh, sw = stride
     if padding == "same":
-        oh, ow = h, w
+        oh, ow = int(np.ceil(h / sh)), int(np.ceil(h / sh))
         ph = np.max((oh - 1) * sh + kh - h, 0)
         pw = np.max((ow - 1) * sw + kw - w, 0)
         pt = int(np.floor(ph / 2))
