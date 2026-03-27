@@ -5,8 +5,8 @@ import numpy as np
 
 def pool(images, kernel_shape, stride, mode='max'):
     '''pooling in CNN'''
-    h, kh = images.shape[1], kernel_shape.shape[0]
-    w, kw = images.shape[2], kernel_shape.shape[1]
+    h, kh = images.shape[1], kernel_shape[0]
+    w, kw = images.shape[2], kernel_shape[1]
     sh, sw = stride
     c = images.shape[3]
     oh, ow = (int(np.floor((h - kh) / sh)) + 1,
