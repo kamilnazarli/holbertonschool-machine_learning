@@ -17,5 +17,5 @@ def pool(images, kernel_shape, stride, mode='max'):
         for col in range(ow):
             patch = images[:, row * sh: row * sh + kh,
                            col * sw: col * sw + kw, :]
-            output[:, row, col, :] = np.max(axis=(1, 2))
+            output[:, row, col, :] = np.max(patch, axis=(1, 2))
     return output
