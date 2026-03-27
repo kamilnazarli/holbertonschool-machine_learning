@@ -21,7 +21,7 @@ def convolve_channels(images, kernel,
     oh, ow = (int(np.floor((h - kh + 2 * ph) / sh)) + 1,
               int(np.floor((w - kw + 2 * pw) / sw)) + 1)
     images = np.pad(images,
-                    ((0, 0), (ph, ph), (pw, pw)),
+                    ((0, 0), (ph, ph), (pw, pw), (0, 0)),
                     constant_values=(0))
     output = np.zeros(shape=(images.shape[0], oh, ow, od))
     for row in range(oh):
