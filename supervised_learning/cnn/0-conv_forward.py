@@ -33,10 +33,8 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     output = np.zeros((m, output_h, output_w, output_c))
     for row in range(output_h):
         for col in range(output_w):
-            for k in range(c_new):
                 patch = A_prev[:, row * sh: row * sh + kh,
-                               col * sw: col*sw + kw, :]
-                output[:, row, col, k] = (np.sum(W[:, :, :, k] * patch, axis=(1, 2, 3)) +
-                                          b[:, :, :, k])
-    
+                               col * sw: col * sw + kw, :]
+                output[:, row, col, :] = (np.sum(W * patch,
+                                                  axis=(1, 2, 3)) + b)
     return activation(output)
