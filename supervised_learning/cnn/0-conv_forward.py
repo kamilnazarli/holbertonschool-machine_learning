@@ -17,6 +17,7 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     sh, sw = stride
     kh, kw = W.shape[0], W.shape[1]
     m = A_prev.shape[0]
+    c_new = b.shape[3]
     if padding == "same":
         ph = int(((h_prev-1) * sh + kh - h_prev) / 2) + 1
         pw = int(((w_prev-1) * sw + kw - w_prev) / 2) + 1
@@ -28,8 +29,10 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     output = np.zeros((m, output_h, output_w, output_c))
     for row in range(output_h):
         for col in range(output_w):
-            patch = A_prev[:, row * sh: row * sh + kh,
-                           col * sw: col*sw + kw]
-            output[:, row, col, :] = np.sum(W.T * patch, axis=(1, 2)) + b
+            for k in range(c_new):
+                patch = A_prev[:, row * sh: row * sh + kh,
+                               col * sw: col*sw + kw, :]
+                output[:, row, col, k] = (np.sum(W[:, :, :, k] * patch, axis=(1, 2, 3)) +
+                                          b[:, :, :, k])
     
     return activation(output)
