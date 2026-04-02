@@ -27,8 +27,8 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     output_w = int(1 + (A_prev.shape[2] + 2 * pw - kw) / sw)
     output_c = W.shape[3]
     A_prev = np.pad(A_prev,
-                    (0, 0), (ph, ph),
-                    (pw, pw), (0, 0),
+                    ((0, 0), (ph, ph),
+                    (pw, pw), (0, 0)),
                     constant_values=0)
     output = np.zeros((m, output_h, output_w, output_c))
     for row in range(output_h):
