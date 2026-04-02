@@ -13,7 +13,7 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
         padding is a string that is either same or valid,
         indicating the type of padding used
     '''
-    h_prev, w_prev = A_prev[1], A_prev[2]
+    h_prev, w_prev = A_prev.shape[1], A_prev.shape[2]
     sh, sw = stride
     kh, kw = W.shape[0], W.shape[1]
     if padding == "same":
