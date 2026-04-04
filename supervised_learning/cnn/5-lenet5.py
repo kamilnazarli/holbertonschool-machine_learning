@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+'''module documented'''
+from tensorflow import keras as K
+
+
+def lenet5(X):
+    '''
+    X is a K.Input of shape (m, 28, 28, 1)
+    containing the input images for the network
+    '''
+    pass
+    model = K.nn.Sequential()
+    model.add(
+        K.layers.Conv2D(6, kernel_size=(5, 5), activation="relu",
+                        padding="same", kernel_initializer="he_normal"),
+        K.layers.MaxPooling2D(kernel_size=(2, 2), strides=(2, 2)),
+        K.layers.Conv2D(16, kernel_size=(5, 5), activation="relu",
+                        padding="valid", kernel_initializer="he_normal"),
+        K.layers.MaxPooling2D(kernel_size=(2, 2), strides=(2, 2)),
+        K.nn.Dense(120, activation="relu"),
+        K.nn.Dense(84, activation="relu"),
+        K.nn.Dense(10, activation="softmax")
+    )
+    model.compile(optimizer="adam",
+                  metrics=["accuracy"])
