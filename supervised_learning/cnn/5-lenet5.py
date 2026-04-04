@@ -8,7 +8,7 @@ def lenet5(X):
     X is a K.Input of shape (m, 28, 28, 1)
     containing the input images for the network
     '''
-    model = K.Sequential()
+    model = K.Sequential()(X)
     model.add(
         K.layers.Conv2D(6, kernel_size=(5, 5), activation="relu",
                         padding="same", kernel_initializer="he_normal",
