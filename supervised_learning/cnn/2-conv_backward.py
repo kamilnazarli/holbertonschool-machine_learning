@@ -27,8 +27,8 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
     m = A_prev.shape[0]
     c_new = b.shape[3]
     if padding == "same":
-        ph = int(((h_prev-1) * sh + kh - h_prev) / 2)
-        pw = int(((w_prev-1) * sw + kw - w_prev) / 2)
+        ph = int(((h_prev-1) * sh + kh - h_prev) / 2) + 1
+        pw = int(((w_prev-1) * sw + kw - w_prev) / 2) + 1
     else:
         ph, pw = 0, 0  
     output_h = int(1 + (h_prev + 2 * ph - kh) / sh)
