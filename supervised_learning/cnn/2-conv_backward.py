@@ -30,7 +30,7 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
         ph = int(((h_prev-1) * sh + kh - h_prev) / 2)
         pw = int(((w_prev-1) * sw + kw - w_prev) / 2)
     else:
-        ph, pw = 0, 0
+        ph, pw = 0, 0  
     output_h = int(1 + (h_prev + 2 * ph - kh) / sh)
     output_w = int(1 + (w_prev + 2 * pw - kw) / sw)
     output_c = W.shape[3]
@@ -50,5 +50,5 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
                     dA_prev[i, row * sh: row * sh + kh, 
                             col * sw: col * sw + kw, :] = (W[i, row, col, k] *
                                                            dZ[i, row, col, k])
-                    dW += (patch * dZ[i, row, col, k])
+                    dW[:, :, :, k] += (patch * dZ[i, row, col, k])
     return dA_prev, dW, db
