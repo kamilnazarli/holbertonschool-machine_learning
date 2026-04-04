@@ -50,5 +50,5 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
                     dA_prev[i, row * sh: row * sh + kh, 
                             col * sw: col * sw + kw, :] = (W[i, row, col, k] *
                                                            dZ[i, row, col, k])
-                    dW += (patch * dZ)
+                    dW += (patch * dZ[i, row, col, k])
     return dA_prev, dW, db
