@@ -41,11 +41,14 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
     dA_prev = np.zeros_like(A_prev_pad)
     dW = np.zeros_like(W)
     db = np.sum(dZ, axis=(0, 1, 2), keepdims=True)
-    for row in range(output_h):
-        for col in range(output_w):
-            for k in range(output_c):
-                patch = A_prev[:, row * sh: row * sh + kh,
-                               col * sw: col * sw + kw, :]
-                dA_prev[:, row, col, k] = W[:, :, :, k] * dZ[:, :, :, k]
-                dW += (patch * dZ)
+    for i in range(m):
+        for row in range(output_h):
+            for col in range(output_w):
+                for k in range(output_c):
+                    patch = A_prev[i, row * sh: row * sh + kh,
+                                   col * sw: col * sw + kw, :]
+                    dA_prev[i, row * sh: row * sh + kh, 
+                            col * sw: col * sw + kw, :] = (W[i, row, col, k] *
+                                                           dZ[i, row, col, k])
+                    dW += (patch * dZ)
     return dA_prev, dW, db
