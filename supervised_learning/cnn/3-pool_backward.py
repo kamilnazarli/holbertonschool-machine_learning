@@ -41,4 +41,4 @@ def pool_backward(dA, A_prev, kernel_shape, stride=(1, 1), mode='max'):
                         dA_prev[i, row * sh: row * sh + kh,
                                 col * sw: col * sw + kw, k] += (da / (kh * kw) *
                                                                 np.ones(kernel_shape))
-    return output
+    return dA_prev
