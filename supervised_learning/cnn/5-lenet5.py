@@ -26,4 +26,4 @@ def lenet5(X):
 
     model.compile(optimizer="adam",
                   metrics=["accuracy"])
-    return model
+    return model(X)
