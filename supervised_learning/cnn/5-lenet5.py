@@ -8,15 +8,15 @@ def lenet5(X):
     X is a K.Input of shape (m, 28, 28, 1)
     containing the input images for the network
     '''
-    K.initializers.HeNormal(seed=0)
+    initializer = K.initializers.HeNormal(seed=0)
     model = K.Sequential()
     model.add(
         K.layers.Conv2D(6, kernel_size=(5, 5), activation="relu",
-                        padding="same", kernel_initializer="he_normal",
+                        padding="same", kernel_initializer=initializer,
                         input_shape=(28, 28, 1)))
     model.add(K.layers.MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
     model.add(K.layers.Conv2D(16, kernel_size=(5, 5), activation="relu",
-                       padding="valid", kernel_initializer="he_normal"))
+                       padding="valid", kernel_initializer=initializer))
     model.add(K.layers.MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
 
     model.add(K.layers.Flatten())
@@ -26,4 +26,4 @@ def lenet5(X):
 
     model.compile(optimizer="adam",
                   metrics=["accuracy"])
-    return model(X)
+    return model
