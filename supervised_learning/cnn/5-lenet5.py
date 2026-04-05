@@ -24,6 +24,7 @@ def lenet5(X):
     D2 = K.layers.Dense(84, activation="relu")(D1)
     output = K.layers.Dense(10, activation="softmax")(D2)
     model = K.Model(inputs=X, outputs=output)
-    model.compile(optimizer="adam",
+    model.compile(loss="categorical_crossentropy",
+                  optimizer="adam",
                   metrics=["accuracy"])
     return model
