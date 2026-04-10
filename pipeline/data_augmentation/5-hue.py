@@ -9,5 +9,6 @@ def change_hue(image, delta):
     containing the image to change
     delta is the amount the hue should change
     '''
-    return tf.image.random_hue(image,
+    img = tf.image.random_hue(image,
                                delta)
+    return img
