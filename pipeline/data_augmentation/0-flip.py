@@ -6,4 +6,5 @@ import tensorflow as tf
 def flip_image(image):
     '''image is a 3D tf.Tensor
        containing the image to flip'''
-    return tf.image.flip_left_right(image)
+    res = tf.image.flip_left_right(image)
+    return res
