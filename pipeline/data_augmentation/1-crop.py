@@ -8,6 +8,6 @@ def crop_image(image, size):
        containing the image to crop
        size is a tuple containing
        the size of the crop'''
-    res = tf.image.crop_and_resize(image,
-                                   crop_size=size)
+    res = tf.image.random_crop(image,
+                               size=size)
     return res
