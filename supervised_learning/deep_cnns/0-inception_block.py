@@ -16,7 +16,7 @@ def inception_block(A_prev, filters):
         FPP is the number of filters in the 1x1
             convolution after the max pooling'''
     F1, F3R, F3 = filters[0], filters[1], filters[2]
-    F5R, F5, FPP = filters[4], filters[5], filters[6]
+    F5R, F5, FPP = filters[3], filters[4], filters[5]
     layer1 = K.sequential([K.layers.Conv2D(filters=F1,
                                            kernel_size=1,
                                            activation="relu")])(A_prev)
