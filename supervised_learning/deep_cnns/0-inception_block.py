@@ -17,28 +17,28 @@ def inception_block(A_prev, filters):
             convolution after the max pooling'''
     F1, F3R, F3 = filters[0], filters[1], filters[2]
     F5R, F5, FPP = filters[3], filters[4], filters[5]
-    layer1 = K.sequential([K.layers.Conv2D(filters=F1,
-                                           kernel_size=1,
-                                           activation="relu")])(A_prev)
+    layer1 = K.layers.Conv2D(filters=F1,
+                             kernel_size=1,
+                             activation="relu")(A_prev)
 
-    layer2 = K.sequential([K.layers.Conv2D(filters=F3R,
-                                           kernel_size=1,
-                                           activation="relu"),
-                           K.layers.Conv2D(filters=F3,
-                                           kernel_size=3,
-                                           activation="relu")])(A_prev)
+    layer2 = K.layers.Conv2D(filters=F3R,
+                             kernel_size=1,
+                             activation="relu")(A_prev)
+    layer2 = K.layers.Conv2D(filters=F3,
+                             kernel_size=3,
+                             activation="relu")(layer2)
 
-    layer3 = K.sequential([K.layers.Conv2D(filters=F5R,
-                                           kernel_size=1,
-                                           activation="relu"),
-                           K.layers.Conv2D(filters=F5,
-                                           kernel_size=5,
-                                           activation="relu")])(A_prev)
+    layer3 = K.layers.Conv2D(filters=F5R,
+                             kernel_size=1,
+                             activation="relu")(A_prev)
+    layer3 = K.layers.Conv2D(filters=F5,
+                             kernel_size=5,
+                             activation="relu")(layer3)
 
-    layer4 = K.sequential([K.layers.MaxPooling2D(pool_size=(3, 3)),
-                           K.layers.Conv2D(filters=FPP,
-                                           kernel_size=1,
-                                           activation="relu")])(A_prev)
+    layer4 = K.layers.MaxPooling2D(pool_size=(3, 3))(A_prev)
+    layer4 = K.layers.Conv2D(filters=FPP,
+                             kernel_size=1,
+                             activation="relu")(layer4)
     return K.layers.Concatenate(axis=-1)([layer1,
                                           layer2,
                                           layer3,
