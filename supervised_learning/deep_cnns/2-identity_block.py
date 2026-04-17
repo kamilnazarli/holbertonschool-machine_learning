@@ -16,7 +16,7 @@ def inception_block(A_prev, filters):
     initializer = K.initializers.HeNormal(seed=0)
     layer1 = K.layers.Conv2D(filters=F11,
                              kernel_size=(1, 1),
-                             padding='same',
+                             padding='valid',
                              kernel_initializer=initializer)(A_prev)
     layer1 = K.layers.BatchNormalization(axis=-1)(layer1)
     layer1 = K.layers.Activation("relu")(layer1)
@@ -30,7 +30,7 @@ def inception_block(A_prev, filters):
 
     layer3 = K.layers.Conv2D(filters=F12,
                              kernel_size=(1, 1),
-                             padding='same',
+                             padding='valid',
                              kernel_initializer=initializer)(layer2)
     layer3 = K.layers.BatchNormalization(axis=-1)(layer3)
 
