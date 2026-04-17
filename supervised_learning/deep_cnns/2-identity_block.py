@@ -33,6 +33,6 @@ def inception_block(A_prev, filters):
                              kernel_initializer=K.initializers.HeNormal(seed=0))(layer2)
     layer3 = K.layers.BatchNormalization()(layer3)
 
-    res = K.layers.Concatenate(axis=-1)([layer3, A_prev])
+    res = K.layers.Add([layer3, A_prev])
     res_A = K.layers.ReLU()(res)
     return res_A
