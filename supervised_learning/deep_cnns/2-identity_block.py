@@ -13,27 +13,25 @@ def inception_block(A_prev, filters):
        F12 is the number of filters in
        the second 1x1 convolution'''
     F11, F3, F12 = filters[0], filters[1], filters[2]
+    initializer = K.initializers.HeNormal(seed=0)
     layer1 = K.layers.Conv2D(filters=F11,
                              kernel_size=(1, 1),
                              padding='same',
-                             use_bias=False,
-                             kernel_initializer=K.initializers.HeNormal(seed=0))(A_prev)
+                             kernel_initializer=initializer)(A_prev)
     layer1 = K.layers.BatchNormalization(axis=-1)(layer1)
     layer1 = K.layers.Activation("relu")(layer1)
 
     layer2 = K.layers.Conv2D(filters=F3,
                              kernel_size=(3, 3),
                              padding='same',
-                             use_bias=False,
-                             kernel_initializer=K.initializers.HeNormal(seed=0))(layer1)
+                             kernel_initializer=initializer)(layer1)
     layer2 = K.layers.BatchNormalization(axis=-1)(layer2)
     layer2 = K.layers.Activation("relu")(layer2)
 
     layer3 = K.layers.Conv2D(filters=4*F12,
                              kernel_size=(1, 1),
                              padding='same',
-                             use_bias=False,
-                             kernel_initializer=K.initializers.HeNormal(seed=0))(layer2)
+                             kernel_initializer=initializer)(layer2)
     layer3 = K.layers.BatchNormalization(axis=-1)(layer3)
 
     res = K.layers.Add()([layer3, A_prev])
