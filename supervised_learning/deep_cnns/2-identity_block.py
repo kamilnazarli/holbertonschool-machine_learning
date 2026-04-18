@@ -4,7 +4,7 @@ from tensorflow import keras as K
 
 
 def identity_block(A_prev, filters):
-    '''filters is a tuple or list 
+    '''filters is a tuple or list
        containing F11, F3, F12, respectively:
        F11 is the number of filters in
        the first 1x1 convolution
