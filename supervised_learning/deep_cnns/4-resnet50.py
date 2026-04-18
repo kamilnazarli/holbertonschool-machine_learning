@@ -5,29 +5,6 @@ identity_block = __import__('2-identity_block').identity_block
 projection_block = __import__('3-projection_block').projection_block
 
 
-def residual_block(A_prev, f, k, s=1):
-    '''A_prev - the output of previous layer
-       f - number of filters
-       k - kernel size
-       s - stride
-    '''
-    initializer = K.initializers.HeNormal(seed=0)
-    X = K.layers.Conv2D(filters=f,
-                        kernel_size=k,
-                        strides=(s, s),
-                        kernel_initializer=initializer)(A_prev)
-    X = K.layers.BatchNormalization(axis=-1)(X)
-    X = K.layers.Activation("relu")(X)
-
-    X = K.layers.Conv2D(filters=f,
-                        kernel_size=k,
-                        strides=(1, 1),
-                        kernel_initializer=initializer)(X)
-    X = K.layers.BatchNormalization(axis=-1)(X)
-    X = K.layers.Activation("relu")(X)
-    return X
-
-
 def resnet50():
     '''func builds the ResNet-50 architecture'''
     initializer = K.initializers.HeNormal(seed=0)
@@ -41,71 +18,40 @@ def resnet50():
     X = K.layers.Activation("relu")(X)
     X = K.layers.MaxPooling2D(pool_size=(3, 3),
                               strides=(2, 2))(X)
-    res = residual_block(X, 64, 3)
-    X = K.layers.Add()([res, X])
-    X = K.layers.Activation("relu")(X)    
+    filters = (64, 64, 256)
+    proj_b1 = projection_block(X,
+                               filters,
+                               s=1)
+    filters = (64, 64, 256)
+    id_block1 = identity_block(proj_b1,
+                               filters)
+    id_block2 = identity_block(id_block1,
+                               filters)
 
-    res = residual_block(X, 64, 3)
-    X = K.layers.Add()([res, X])
-    X = K.layers.Activation("relu")(X)
+    filters = (128, 128, 512)
+    proj_b2 = projection_block(id_block2, filters)
 
-    res = residual_block(X, 64, 3)
-    X = K.layers.Add()([res, X])
-    X = K.layers.Activation("relu")(X)
+    filters = (128, 128, 512)
+    id_block2 = identity_block(proj_b2, filters)
+    id_block2 = identity_block(id_block2, filters)
+    id_block2 = identity_block(id_block2, filters)
 
-    res = residual_block(X, 128, 3, 2)
-    X = K.layers.Add()([res, X])
-    X = K.layers.Activation("relu")(X)
+    filters = (256, 256, 1024)
+    proj_b3 = projection_block(id_block2, filters)
 
-    res = residual_block(X, 128, 3)
-    X = K.layers.Add()([res, X])
-    X = K.layers.Activation("relu")(X)
+    filters = (256, 256, 1024)
+    id_block3 = identity_block(proj_b3, filters)
+    id_block3 = identity_block(id_block3, filters)
+    id_block3 = identity_block(id_block3, filters)
+    id_block3 = identity_block(id_block3, filters)
+    id_block3 = identity_block(id_block3, filters)
 
-    res = residual_block(X, 128, 3)
-    X = K.layers.Add()([res, X])
-    X = K.layers.Activation("relu")(X)
-
-    res = residual_block(X, 128, 3)
-    X = K.layers.Add()([res, X])
-    X = K.layers.Activation("relu")(X)
-
-    res = residual_block(X, 256, 3, 2)
-    X = K.layers.Add()([res, X])
-    X = K.layers.Activation("relu")(X)
-
-    res = residual_block(X, 256, 3)
-    X = K.layers.Add()([res, X])
-    X = K.layers.Activation("relu")(X)
-
-    res = residual_block(X, 256, 3)
-    X = K.layers.Add()([res, X])
-    X = K.layers.Activation("relu")(X)
-
-    res = residual_block(X, 256, 3)
-    X = K.layers.Add()([res, X])
-    X = K.layers.Activation("relu")(X)
-
-    res = residual_block(X, 256, 3)
-    X = K.layers.Add()([res, X])
-    X = K.layers.Activation("relu")(X)
-
-    res = residual_block(X, 256, 3)
-    X = K.layers.Add()([res, X])
-    X = K.layers.Activation("relu")(X)
-
-    res = residual_block(X, 512, 3, 2)
-    X = K.layers.Add()([res, X])
-    X = K.layers.Activation("relu")(X)
-
-    res = residual_block(X, 512, 3)
-    X = K.layers.Add()([res, X])
-    X = K.layers.Activation("relu")(X)
-
-    res = residual_block(X, 512, 3)
-    X = K.layers.Add()([res, X])
-    X = K.layers.Activation("relu")(X)
-
-    X = K.layers.GlobalAveragePooling2D()(X)
-    output = K.layers.Dense(1000, activation="softmax")(X)
-    model = K.Model(input, output)
-    return model
+    filters = (512, 512, 2048)
+    proj_b4 = projection_block(id_block3, filters)
+    id_block4 = identity_block(proj_b4, filters)
+    id_block4 = identity_block(id_block4, filters)
+    avg_pool = K.layers.AveragePooling2D(pool_size=7, strides=1,
+                                         padding='valid')(id_block4)
+    softmax = K.layers.Dense(units=1000, activation='softmax',
+                             kernel_initializer=initializer)(avg_pool)
+    return K.Model(inputs=input, outputs=softmax)
