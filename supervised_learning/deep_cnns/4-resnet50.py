@@ -93,3 +93,4 @@ def resnet50():
     X = K.layers.GlobalAveragePooling()(X)
     output = K.layers.Dense(1000, activation="softmax")(X)
     model = K.Model(input, output)
+    return model
