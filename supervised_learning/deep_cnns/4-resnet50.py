@@ -43,82 +43,82 @@ def resnet50():
     X = K.layers.MaxPooling2D(pool_size=(3, 3),
                               strides=(2, 2))(X)
     res = residual_block(X, 64, 3)
-    X = K.layers.Add()[res, X]
+    X = K.layers.Add()([res, X])
     X = K.layers.BatchNormalization(axis=-1)(X)
     X = K.layers.Activation("relu")(X)    
 
     res = residual_block(X, 64, 3)
-    X = K.layers.Add()[res, X]
+    X = K.layers.Add()([res, X])
     X = K.layers.BatchNormalization(axis=-1)(X)
     X = K.layers.Activation("relu")(X)
 
     res = residual_block(X, 64, 3)
-    X = K.layers.Add()[res, X]
+    X = K.layers.Add()([res, X])
     X = K.layers.BatchNormalization(axis=-1)(X)
     X = K.layers.Activation("relu")(X)
 
     res = residual_block(X, 128, 3, 2)
-    X = K.layers.Add()[res, X]
+    X = K.layers.Add()([res, X])
     X = K.layers.BatchNormalization(axis=-1)(X)
     X = K.layers.Activation("relu")(X)
 
     res = residual_block(X, 128, 3)
-    X = K.layers.Add()[res, X]
+    X = K.layers.Add()([res, X])
     X = K.layers.BatchNormalization(axis=-1)(X)
     X = K.layers.Activation("relu")(X)
 
     res = residual_block(X, 128, 3)
-    X = K.layers.Add()[res, X]
+    X = K.layers.Add()([res, X])
     X = K.layers.BatchNormalization(axis=-1)(X)
     X = K.layers.Activation("relu")(X)
 
     res = residual_block(X, 128, 3)
-    X = K.layers.Add()[res, X]
+    X = K.layers.Add()([res, X])
     X = K.layers.BatchNormalization(axis=-1)(X)
     X = K.layers.Activation("relu")(X)
 
     res = residual_block(X, 256, 3, 2)
-    X = K.layers.Add()[res, X]
+    X = K.layers.Add()([res, X])
     X = K.layers.BatchNormalization(axis=-1)(X)
     X = K.layers.Activation("relu")(X)
 
     res = residual_block(X, 256, 3)
-    X = K.layers.Add()[res, X]
+    X = K.layers.Add()([res, X])
     X = K.layers.BatchNormalization(axis=-1)(X)
     X = K.layers.Activation("relu")(X)
 
     res = residual_block(X, 256, 3)
-    X = K.layers.Add()[res, X]
+    X = K.layers.Add()([res, X])
     X = K.layers.BatchNormalization(axis=-1)(X)
     X = K.layers.Activation("relu")(X)
 
     res = residual_block(X, 256, 3)
-    X = K.layers.Add()[res, X]
+    X = K.layers.Add()([res, X])
     X = K.layers.BatchNormalization(axis=-1)(X)
     X = K.layers.Activation("relu")(X)
 
     res = residual_block(X, 256, 3)
-    X = K.layers.Add()[res, X]
+    X = K.layers.Add()([res, X])
     X = K.layers.BatchNormalization(axis=-1)(X)
     X = K.layers.Activation("relu")(X)
 
     res = residual_block(X, 256, 3)
-    X = K.layers.Add()[res, X]
+    X = K.layers.Add()([res, X])
     X = K.layers.BatchNormalization(axis=-1)(X)
     X = K.layers.Activation("relu")(X)
 
     res = residual_block(X, 512, 3, 2)
-    X = K.layers.Add()[res, X]
+    X = K.layers.Add()([res, X])
     X = K.layers.BatchNormalization(axis=-1)(X)
     X = K.layers.Activation("relu")(X)
 
     res = residual_block(X, 512, 3)
-    X = K.layers.Add()[res, X]
+    X = K.layers.Add()([res, X])
     X = K.layers.BatchNormalization(axis=-1)(X)
     X = K.layers.Activation("relu")(X)
 
     res = residual_block(X, 512, 3)
-    X = K.layers.Add()[res, X]
+    X = K.layers.Add()([res, X])
     X = K.layers.BatchNormalization(axis=-1)(X)
     X = K.layers.Activation("relu")(X)
 
