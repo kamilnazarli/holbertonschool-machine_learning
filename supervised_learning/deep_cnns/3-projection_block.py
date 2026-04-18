@@ -42,6 +42,6 @@ def projection_block(A_prev, filters, s=2):
                               padding="same",
                               kernel_initializer=initializer)(A_prev)
     layer_s = K.layers.BatchNormalization(axis=-1)(layer_s)
-    res = K.layers.Add()([layer_s, layer3])
+    res = K.layers.Add()([layer3, layer_s])
     res_A = K.layers.Activation("relu")(res)
     return res_A
