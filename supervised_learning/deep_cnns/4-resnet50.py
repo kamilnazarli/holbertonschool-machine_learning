@@ -15,14 +15,14 @@ def residual_block(A_prev, f, k, s=1):
     X = K.layers.Conv2D(filters=f,
                         kernel_size=k,
                         strides=(s, s),
-                        kernel_initializer=initializer)(X)
+                        kernel_initializer=initializer)(A_prev)
     X = K.layers.BatchNormalization(axis=-1)(X)
     X = K.layers.Activation("relu")(X)
 
     X = K.layers.Conv2D(filters=f,
                         kernel_size=k,
                         strides=(1, 1),
-                        kernel_initializer=initializer)(A_prev)
+                        kernel_initializer=initializer)(X)
     X = K.layers.BatchNormalization(axis=-1)(X)
     X = K.layers.Activation("relu")(X)
 
