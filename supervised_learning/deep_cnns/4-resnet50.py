@@ -23,7 +23,7 @@ def resnet50():
     filters = (64, 64, 256)
     proj_b1 = projection_block(X,
                                filters,
-                               s=1)
+                               s=(1, 1))
     filters = (64, 64, 256)
     id_block1 = identity_block(proj_b1,
                                filters)
