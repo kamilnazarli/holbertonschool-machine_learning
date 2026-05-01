@@ -2,6 +2,7 @@
 '''yolo algorithm'''
 import keras as K
 
+
 class Yolo:
     '''yolo class'''
     def __init__(self, model_path, classes_path, class_t, nms_t, anchors):
@@ -11,7 +12,8 @@ class Yolo:
         for the Darknet model, listed in order of index, can be found
         -class_t is a float representing the box score threshold for the
         initial filtering step
-        -nms_t is a float representing the IOU threshold for non-max suppression
+        -nms_t is a float representing the IOU threshold for non-max
+        suppression
         -anchors is a numpy.ndarray of shape (outputs, anchor_boxes, 2)
         containing all of the anchor boxes
         '''
