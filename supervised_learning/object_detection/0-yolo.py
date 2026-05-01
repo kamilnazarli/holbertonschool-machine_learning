@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''yolo algorithm'''
-
+import keras as K
 
 class Yolo:
     '''yolo class'''
@@ -15,9 +15,9 @@ class Yolo:
         -anchors is a numpy.ndarray of shape (outputs, anchor_boxes, 2)
         containing all of the anchor boxes
         '''
-        self.model = model_path
-        self.class_names = classes_path
+        self.model = K.models.load_model(model_path)
+        with open(classes_path, "r") as f:
+            self.class_names = f.read().split()
         self.class_t = class_t
         self.nms_t = nms_t
         self.anchors = anchors
-    
