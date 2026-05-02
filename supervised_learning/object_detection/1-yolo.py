@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 '''yolo algorithm'''
 import keras as K
+import numpy as np
 
 
 class Yolo:
@@ -33,8 +34,13 @@ class Yolo:
         '''
         img_h, img_w = image_size
         res = []
+        pw, ph = self.anchors
         for output in outputs:
-            boxes = output[:, :, :, :4]
+            bx = 1 / (1 + np.exp(-output[:, :, :, 0])) + img_w
+            by = 1 / (1 + np.exp(-output[:, :, :, 1])) + img_h
+            bw = pw * np.exp(output[:, :, :, 2])
+            bh = ph * np.exp(output[:, :, :, 3])
+            boxes = np.array([bx, by, bw, bh])
             box_confidence = output[:, :, :, 4]
             box_class_probs = output[:, :, :, 5:]
             res.append((boxes, box_confidence, box_class_probs))
