@@ -34,14 +34,16 @@ class Yolo:
         '''
         img_h, img_w = image_size
         res = []
-        pw, ph = self.anchors
-        for output in outputs:
+        for i, output in enumerate(outputs):
+            pw = self.anchors[i, :, 0]
+            ph = self.anchors[i, :, 1]
+
             bx = 1 / (1 + np.exp(-output[:, :, :, 0])) + img_w
             by = 1 / (1 + np.exp(-output[:, :, :, 1])) + img_h
             bw = pw * np.exp(output[:, :, :, 2])
             bh = ph * np.exp(output[:, :, :, 3])
             boxes = np.array([bx, by, bw, bh])
-            box_confidence = output[:, :, :, 4]
-            box_class_probs = output[:, :, :, 5:]
+            box_confidence = 1 / (1 + np.exp(-output[:, :, :, 4]))
+            box_class_probs = 1 / (1 + np.exp(-output[:, :, :, 5:]))
             res.append((boxes, box_confidence, box_class_probs))
         return res
