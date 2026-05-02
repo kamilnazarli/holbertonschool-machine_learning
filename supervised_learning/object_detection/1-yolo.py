@@ -32,7 +32,10 @@ class Yolo:
         size [image_height, image_width]
         '''
         img_h, img_w = image_size
-        boxes = outputs[:, :, :, :4]
-        box_confidence = outputs[:, :, :, 4]
-        box_class_probs = outputs[:, :, :, 5:]
-        return (boxes, box_confidence, box_class_probs)
+        res = []
+        for output in outputs:
+            boxes = output[:, :, :, :4]
+            box_confidence = output[:, :, :, 4]
+            box_class_probs = output[:, :, :, 5:]
+            res.append((boxes, box_confidence, box_class_probs))
+        return res
