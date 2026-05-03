@@ -40,8 +40,10 @@ class Yolo:
 
             bx = 1 / (1 + np.exp(-output[:, :, :, 0])) + img_w
             by = 1 / (1 + np.exp(-output[:, :, :, 1])) + img_h
+
             bw = pw * np.exp(output[:, :, :, 2])
             bh = ph * np.exp(output[:, :, :, 3])
+
             boxes = np.array([bx, by, bw, bh])
             box_confidence = 1 / (1 + np.exp(-output[:, :, :, 4]))
             box_class_probs = 1 / (1 + np.exp(-output[:, :, :, 5:]))
