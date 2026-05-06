@@ -19,12 +19,12 @@ class NST:
         beta - the weight for style cost
         '''
         if not (isinstance(style_image, np.ndarray) and
-                style_image.shape[2]==3 and
-                style_image.ndim==3):
+                style_image.ndim==3 and
+                style_image.shape[2]==3):
             raise TypeError("style_image must be a numpy.ndarray with shape (h, w, 3)")
         if not (isinstance(content_image, np.ndarray) and
-                content_image.shape[2]==3 and
-                content_image.ndim==3):
+                content_image.ndim==3 and
+                content_image.shape[2]==3):
             raise TypeError("content_image must be a numpy.ndarray with shape (h, w, 3)")
         if alpha < 0 or not isinstance(alpha, (int, float)):
             raise TypeError("alpha must be a non-negative number")
@@ -42,8 +42,8 @@ class NST:
            containing the image to be scaled
         '''
         if not (isinstance(image, np.ndarray) and
-                image.shape[2]==3 and
-                len(image.shape)==3):
+                image.ndim==3 and
+                image.shape[2]==3):
             raise TypeError("image must be a numpy.ndarray with shape (h, w, 3)")
         h, w = image.shape[0], image.shape[1]
         scale = 512 / max(h, w)
