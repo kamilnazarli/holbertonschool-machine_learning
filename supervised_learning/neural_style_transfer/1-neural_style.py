@@ -38,7 +38,7 @@ class NST:
         self.content_image = self.scale_image(content_image)
         self.alpha = alpha
         self.beta = beta
-        # self.model
+        self.model = self.load_model()
 
     def load_model(self):
         '''creates the model used to calculate cost'''
