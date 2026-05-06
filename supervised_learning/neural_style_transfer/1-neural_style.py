@@ -44,7 +44,8 @@ class NST:
         '''creates the model used to calculate cost'''
         vgg = tf.keras.applications.VGG19(
             include_top=False,
-            weights="imagenet"
+            weights="imagenet",
+            pooling="avg"
         )
 
         vgg.trainable = False
