@@ -18,9 +18,7 @@ class NST:
         alpha - the weight for content cost
         beta - the weight for style cost
         '''
-        if not (isinstance(style_image, np.ndarray) and
-                style_image.shape[2]==3 and
-                len(style_image.shape)==3):
+        if not (isinstance(style_image, np.ndarray)):
             raise TypeError("style_image must be a numpy.ndarray" \
                             "with shape (h, w, 3)")
         if not (isinstance(content_image, np.ndarray) and
@@ -51,7 +49,7 @@ class NST:
         scale = 512 / max(h, w)
         image = np.expand_dims(image, axis=0)
         image_tensor = tf.convert_to_tensor(image, dtype=tf.float32)
-        image_tensor /= 255
+        image_tensor /= 255.0
         h_new, w_new = int(h * scale), int(w * scale)
         scaled_image = tf.image.resize(image_tensor,
                                        size=(h_new, w_new),
