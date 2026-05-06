@@ -38,7 +38,6 @@ class NST:
         self.content_image = self.scale_image(content_image)
         self.alpha = alpha
         self.beta = beta
-        self.model = self.load_model()
 
     def load_model(self):
         '''creates the model used to calculate cost'''
@@ -52,8 +51,7 @@ class NST:
         for layer in self.style_layers:
             outputs.append(vgg.get_layer(layer).output)
         outputs.append(vgg.get_layer(self.content_layer).output)
-        model = tf.keras.Model(inputs=vgg.input, outputs=outputs)
-        return model
+        self.model = tf.keras.Model(inputs=vgg.input, outputs=outputs)
 
     @staticmethod
     def scale_image(image):
