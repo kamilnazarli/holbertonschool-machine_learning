@@ -42,17 +42,17 @@ class NST:
         '''image - a numpy.ndarray of shape (h, w, 3)
            containing the image to be scaled
         '''
-        h, w = image.shape[0], image.shape[1]
-        scale = 512 / max(h, w)
-
-        h_new = tf.cast(tf.cast(h, tf.float32) * scale, tf.int32)
-        w_new = tf.cast(tf.cast(w, tf.float32) * scale, tf.int32)
         if not (isinstance(image, np.ndarray) and
                 image.shape[2]==3 and
                 len(image.shape)==3):
             raise TypeError("image must be a numpy.ndarray" \
                             "with shape (h, w, 3)")
-        scaled_image = tf.image.resize(image,
-                                       size=(1, h_new, w_new, 3),
+        h, w = image.shape[0], image.shape[1]
+        scale = 512 / max(h, w)
+        image_tensor = tf.convert_to_tensor(image, dtype=tf.float32)
+        image_tensor /= 255
+        h_new, w_new = int(h * scale), int(w * scale)
+        scaled_image = tf.image.resize(image_tensor,
+                                       size=(h_new, w_new),
                                        method='bicubic')
         return scaled_image
