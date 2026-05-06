@@ -47,7 +47,8 @@ class NST:
         if not (isinstance(image, np.ndarray) and
                 image.ndim == 3 and
                 image.shape[2] == 3):
-            raise TypeError("image must be a numpy.ndarray with shape (h, w, 3)")
+            raise TypeError(
+                "image must be a numpy.ndarray with shape (h, w, 3)")
         h, w = image.shape[0], image.shape[1]
         scale = 512 / max(h, w)
         image = np.expand_dims(image, axis=0)
