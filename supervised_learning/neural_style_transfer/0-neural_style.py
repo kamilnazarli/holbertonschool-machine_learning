@@ -49,7 +49,7 @@ class NST:
                             "with shape (h, w, 3)")
         h, w = image.shape[0], image.shape[1]
         scale = 512 / max(h, w)
-        image = tf.expand_dims(image, axis=0)
+        image = np.expand_dims(image, axis=0)
         image_tensor = tf.convert_to_tensor(image, dtype=tf.float32)
         image_tensor /= 255
         h_new, w_new = int(h * scale), int(w * scale)
