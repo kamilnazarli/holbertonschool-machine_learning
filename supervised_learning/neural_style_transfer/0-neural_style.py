@@ -49,9 +49,9 @@ class NST:
         scale = 512 / max(h, w)
         image = np.expand_dims(image, axis=0)
         image_tensor = tf.convert_to_tensor(image, dtype=tf.float32)
-        image_tensor /= 255.0
         h_new, w_new = int(h * scale), int(w * scale)
         scaled_image = tf.image.resize(image_tensor,
                                        size=(h_new, w_new),
                                        method='bicubic')
+        scaled_image /= 255.0
         return scaled_image
