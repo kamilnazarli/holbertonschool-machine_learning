@@ -20,11 +20,11 @@ class NST:
         '''
         if not (isinstance(style_image, np.ndarray) and
                 style_image.shape[2]==3 and
-                len(style_image.shape)==3):
+                style_image.ndim==3):
             raise TypeError("style_image must be a numpy.ndarray with shape (h, w, 3)")
         if not (isinstance(content_image, np.ndarray) and
                 content_image.shape[2]==3 and
-                len(content_image.shape)==3):
+                content_image.ndim==3):
             raise TypeError("content_image must be a numpy.ndarray with shape (h, w, 3)")
         if alpha < 0 or not isinstance(alpha, (int, float)):
             raise TypeError("alpha must be a non-negative number")
