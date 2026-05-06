@@ -53,6 +53,6 @@ class NST:
         image_tensor /= 255
         h_new, w_new = int(h * scale), int(w * scale)
         scaled_image = tf.image.resize(image_tensor,
-                                       size=(h_new, w_new),
+                                       size=(1, h_new, w_new),
                                        method='bicubic')
         return scaled_image
