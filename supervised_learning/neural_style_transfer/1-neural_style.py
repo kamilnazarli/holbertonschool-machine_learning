@@ -44,8 +44,7 @@ class NST:
         '''creates the model used to calculate cost'''
         vgg = tf.keras.applications.VGG19(
             include_top=False,
-            weights="imagenet",
-            pooling="avg"
+            weights="imagenet"
         )
 
         vgg.trainable = False
@@ -53,7 +52,12 @@ class NST:
         for layer in self.style_layers:
             outputs.append(vgg.get_layer(layer).output)
         outputs.append(vgg.get_layer(self.content_layer).output)
-        self.model = tf.keras.Model(inputs=vgg.input, outputs=outputs)
+        model = tf.keras.Model(inputs=vgg.input, outputs=outputs)
+        for layer in model.layers:
+            if isinstance(layer, tf.keras.layers.MaxPooling2D):
+                layer.__class__ = tf.keras.layers.AveragePooling2D
+
+        self.model = model
         return self.model
 
     @staticmethod
