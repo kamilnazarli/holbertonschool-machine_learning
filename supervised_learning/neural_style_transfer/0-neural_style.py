@@ -18,7 +18,9 @@ class NST:
         alpha - the weight for content cost
         beta - the weight for style cost
         '''
-        if not (isinstance(style_image, np.ndarray)):
+        if not (isinstance(style_image, np.ndarray) and
+                style_image.shape[2]==3 and
+                len(style_image.shape)==3):
             raise TypeError("style_image must be a numpy.ndarray" \
                             "with shape (h, w, 3)")
         if not (isinstance(content_image, np.ndarray) and
@@ -30,8 +32,8 @@ class NST:
             raise TypeError("alpha must be a non-negative number")
         if beta < 0:
             raise TypeError("beta must be a non-negative number")
-        self.style_image = style_image
-        self.content_image = content_image
+        self.style_image = self.scale_image(style_image)
+        self.content_image = self.scale_image(content_image)
         self.alpha = alpha
         self.beta = beta
 
