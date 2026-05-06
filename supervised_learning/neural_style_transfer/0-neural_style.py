@@ -54,4 +54,5 @@ class NST:
                                        size=(h_new, w_new),
                                        method='bicubic')
         scaled_image /= 255.0
+        scaled_image = tf.clip_by_value(scaled_image, 0, 1)
         return scaled_image
