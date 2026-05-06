@@ -21,13 +21,11 @@ class NST:
         if not (isinstance(style_image, np.ndarray) and
                 style_image.shape[2]==3 and
                 len(style_image.shape)==3):
-            raise TypeError("style_image must be a numpy.ndarray" \
-                            "with shape (h, w, 3)")
+            raise TypeError("style_image must be a numpy.ndarray with shape (h, w, 3)")
         if not (isinstance(content_image, np.ndarray) and
                 content_image.shape[2]==3 and
                 len(content_image.shape)==3):
-            raise TypeError("content_image must be a numpy.ndarray" \
-                            "with shape (h, w, 3)")
+            raise TypeError("content_image must be a numpy.ndarray with shape (h, w, 3)")
         if alpha < 0:
             raise TypeError("alpha must be a non-negative number")
         if beta < 0:
@@ -45,8 +43,7 @@ class NST:
         if not (isinstance(image, np.ndarray) and
                 image.shape[2]==3 and
                 len(image.shape)==3):
-            raise TypeError("image must be a numpy.ndarray" \
-                            "with shape (h, w, 3)")
+            raise TypeError("image must be a numpy.ndarray with shape (h, w, 3)")
         h, w = image.shape[0], image.shape[1]
         scale = 512 / max(h, w)
         image = np.expand_dims(image, axis=0)
