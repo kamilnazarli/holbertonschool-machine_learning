@@ -26,9 +26,9 @@ class NST:
                 len(content_image.shape)==3):
             raise TypeError("content_image must be a numpy.ndarray" \
                             "with shape (h, w, 3)")
-        if alpha <= 0:
+        if alpha < 0:
             raise TypeError("alpha must be a non-negative number")
-        if beta <= 0:
+        if beta < 0:
             raise TypeError("beta must be a non-negative number")
         self.style_image = style_image
         self.content_image = content_image
