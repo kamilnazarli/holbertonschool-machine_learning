@@ -92,9 +92,8 @@ class NST:
         if not (isinstance(input_layer, (tf.Tensor, tf.Variable))
                 and tf.rank(input_layer) == 4):
             raise TypeError("input_layer must be a tensor of rank 4")
-        h, w, c = (input_layer.shape[1],
-                   input_layer.shape[2],
-                   input_layer.shape[3])
+        shape = tf.shape(input_layer)
+        h, w, c = (shape[1], shape[2], shape[3])
         f_map = tf.reshape(input_layer, (-1, c))
         gram_matrix = (
             tf.reshape(tf.linalg.matmul(f_map, tf.transpose(f_map)),(1, c, c)))
