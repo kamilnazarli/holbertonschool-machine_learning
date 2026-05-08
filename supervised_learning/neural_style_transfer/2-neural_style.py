@@ -96,5 +96,5 @@ class NST:
                    input_layer.shape[2],
                    input_layer.shape[3])
         f_map = input_layer.reshape(c, h * w)
-        gram_matrix = f_map * f_map.T
+        gram_matrix = (f_map * f_map.T).reshape(1, c, c)
         return gram_matrix
