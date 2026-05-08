@@ -97,6 +97,6 @@ class NST:
                    input_layer.shape[3])
         f_map = tf.reshape(input_layer, (c, h * w))
         gram_matrix = (
-            tf.reshape(tf.linalg.matmul(f_map * tf.tanspose(f_map)),(1, c, c)))
+            tf.reshape(tf.linalg.matmul(f_map, tf.tanspose(f_map)),(1, c, c)))
 
         return gram_matrix
