@@ -1,0 +1,100 @@
+#!/usr/bin/env python3
+'''neural style from scratch'''
+import numpy as np
+import tensorflow as tf
+
+
+class NST:
+    '''class NST'''
+    style_layers = ['block1_conv1', 'block2_conv1', 'block3_conv1',
+                    'block4_conv1', 'block5_conv1']
+    content_layer = 'block5_conv2'
+
+    def __init__(self, style_image, content_image, alpha=1e4, beta=1):
+        '''
+        style_image - the image used as a style reference,
+        stored as a numpy.ndarray
+        content_image - the image used as a content reference,
+        stored as a numpy.ndarray
+        alpha - the weight for content cost
+        beta - the weight for style cost
+        '''
+        if not (isinstance(style_image, np.ndarray) and
+                style_image.ndim == 3 and
+                style_image.shape[2] == 3):
+            raise TypeError(
+                "style_image must be a numpy.ndarray with shape (h, w, 3)")
+        if not (isinstance(content_image, np.ndarray) and
+                content_image.ndim == 3 and
+                content_image.shape[2] == 3):
+            raise TypeError(
+                "content_image must be a numpy.ndarray with shape (h, w, 3)")
+        if not isinstance(alpha, (int, float)) or alpha < 0:
+            raise TypeError("alpha must be a non-negative number")
+        if not isinstance(beta, (int, float)) or beta < 0:
+            raise TypeError("beta must be a non-negative number")
+
+        self.style_image = self.scale_image(style_image)
+        self.content_image = self.scale_image(content_image)
+        self.alpha = alpha
+        self.beta = beta
+        self.model = self.load_model()
+
+    def load_model(self):
+        '''creates the model used to calculate cost'''
+        vgg = tf.keras.applications.VGG19(
+            include_top=False,
+            weights="imagenet"
+        )
+
+        vgg.trainable = False
+        outputs = []
+        for layer in self.style_layers:
+            outputs.append(vgg.get_layer(layer).output)
+        outputs.append(vgg.get_layer(self.content_layer).output)
+        model = tf.keras.Model(inputs=vgg.input, outputs=outputs)
+        for layer in model.layers:
+            if isinstance(layer, tf.keras.layers.MaxPooling2D):
+                layer.__class__ = tf.keras.layers.AveragePooling2D
+
+        self.model = model
+        return self.model
+
+    @staticmethod
+    def scale_image(image):
+        '''image - a numpy.ndarray of shape (h, w, 3)
+           containing the image to be scaled
+        '''
+        if not (isinstance(image, np.ndarray) and
+                image.ndim == 3 and
+                image.shape[2] == 3):
+            raise TypeError(
+                "image must be a numpy.ndarray with shape (h, w, 3)")
+        h, w = image.shape[0], image.shape[1]
+        scale = 512 / max(h, w)
+        image = np.expand_dims(image, axis=0)
+        image_tensor = tf.convert_to_tensor(image, dtype=tf.float32)
+        h_new, w_new = int(h * scale), int(w * scale)
+        scaled_image = tf.image.resize(image_tensor,
+                                       size=(h_new, w_new),
+                                       method='bicubic')
+        scaled_image /= 255.0
+        scaled_image = tf.clip_by_value(scaled_image, 0, 1)
+        return scaled_image
+
+    @staticmethod
+    def gram_matrix(input_layer):
+        '''
+        input_layer - an instance of tf.Tensor or
+        tf.Variable of shape (1, h, w, c)containing the layer
+        output whose gram matrix should be calculated
+        '''
+        if not (isinstance(input_layer, (tf.Tensor, tf.Variable))
+                and tf.rank(input_layer) == 4):
+            raise TypeError("input_layer must be a tensor of rank 4")
+        h, w, c = (input_layer.shape[1],
+                   input_layer.shape[2],
+                   input_layer.shape[3])
+        f_map = input_layer.reshape(c, h * w)
+        gram_matrix = f_map * f_map.T
+        return gram_matrix
