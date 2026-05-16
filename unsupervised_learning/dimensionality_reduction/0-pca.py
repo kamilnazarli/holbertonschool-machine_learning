@@ -25,5 +25,5 @@ def pca(X, var=0.95):
     variance_ratio = sorted_vals / total_variance
     variance_cum = np.cumsum(variance_ratio)
     id =np.where(variance_cum == var)[0]
-    X_new = np.dot(X_centered, eigenvectors[:, : id + 1])
+    X_new = np.dot(X_centered, sorted_vecs[:, : id + 1])
     return X_new
