@@ -18,9 +18,11 @@ def pca(X, var=0.95):
     #  covariance matrix
     C = np.dot(X_centered.T, X_centered) / (n - 1)
     eigenvalues, eigenvectors = np.linalg.eig(C)
-    sorted_vecs = eigenvectors[np.argsort(eigenvalues)[::-1]]
+    sorted_ids = np.argsort(eigenvalues)[::-1]
+    sorted_vals = eigenvectors[sorted_ids]
+    sorted_vecs = eigenvectors[sorted_ids]
     total_variance = np.sum(eigenvalues)
-    variance_ratio = sorted_vecs / total_variance
+    variance_ratio = sorted_vals / total_variance
     variance_cum = np.cumsum(variance_ratio)
     id = np.where(variance_cum >= var)[0][0]
     X_new = np.dot(X_centered, eigenvectors[:, : id])
