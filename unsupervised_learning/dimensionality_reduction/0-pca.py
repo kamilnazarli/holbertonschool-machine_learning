@@ -17,7 +17,7 @@ def pca(X, var=0.95):
 
     #  covariance matrix
     C = np.dot(X_centered.T, X_centered) / (n - 1)
-    eigenvalues, eigenvectors = np.linalg.eig(C)
+    eigenvalues, eigenvectors = np.linalg.eigh(C)
     sorted_ids = np.argsort(eigenvalues)[::-1]
     sorted_vals = eigenvalues[sorted_ids]
     sorted_vecs = eigenvectors[:, sorted_ids]
