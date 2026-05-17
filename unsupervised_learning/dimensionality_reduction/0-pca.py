@@ -27,4 +27,4 @@ def pca(X, var=0.95):
     id =np.argmax(variance_cum >= var) + 1
     Wk = sorted_vecs[:, : id]
     X_new = np.dot(X_centered, Wk)
-    return X_new
+    return Wk
