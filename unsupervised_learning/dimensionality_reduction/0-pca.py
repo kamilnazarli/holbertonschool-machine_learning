@@ -15,7 +15,7 @@ def pca(X, var=0.95):
     X_centered = X - np.mean(X, axis=0)
     U, S, Vt = np.linalg.svd(X_centered)
 
-    variance = S ** 2
+    variance = S
     variance_ratio = variance / np.sum(variance)
     variance_cum = np.cumsum(variance_ratio)
     r =np.argmax(variance_cum >= var) + 1
