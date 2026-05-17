@@ -12,19 +12,12 @@ def pca(X, var=0.95):
     - var is the fraction of the variance that the
     PCA transformation should maintain
     '''
-    n = X.shape[0]
     X_centered = X - np.mean(X, axis=0)
+    U, S, Vt = np.linalg.svd(X_centered)
 
-    #  covariance matrix
-    C = np.dot(X_centered.T, X_centered) / (n - 1)
-    eigenvalues, eigenvectors = np.linalg.eigh(C)
-    sorted_ids = np.argsort(eigenvalues)[::-1]
-    sorted_vals = eigenvalues[sorted_ids]
-    sorted_vecs = eigenvectors[:, sorted_ids]
-    total_variance = np.sum(eigenvalues)
-    variance_ratio = sorted_vals / total_variance
+    variance = S ** 2
+    variance_ratio = variance / np.sum(variance)
     variance_cum = np.cumsum(variance_ratio)
     id =np.argmax(variance_cum >= var) + 1
-    Wk = sorted_vecs[:, : id]
-    X_new = np.dot(X_centered, Wk)
+    Wk = Vt.T[:, :id]
     return Wk
