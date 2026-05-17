@@ -16,6 +16,6 @@ def pca(X, ndim):
     U, S, Vt = np.linalg.svd(X_centered)
 
     # r = np.argmax(variance_cum >= var) + 1
-    Wk = Vt.T
-    X_transformed = np.resize(Wk, (d, ndim))
+    Wk = Vt.T[:, : ndim]
+    X_transformed = np.dot(X_centered, Wk)
     return X_transformed
