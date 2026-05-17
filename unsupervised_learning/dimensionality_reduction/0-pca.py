@@ -18,6 +18,6 @@ def pca(X, var=0.95):
     variance = S ** 2
     variance_ratio = variance / np.sum(variance)
     variance_cum = np.cumsum(variance_ratio)
-    id =np.argmax(variance_cum >= var) + 1
-    Wk = Vt.T[:, :id]
+    r =np.argmax(variance_cum >= var) + 1
+    Wk = Vt.T[:, :r]
     return Wk
