@@ -26,7 +26,5 @@ def pca(X, var=0.95):
     variance_cum = np.cumsum(variance_ratio)
     id =np.argmax(variance_cum >= var) + 1
     Wk = sorted_vecs[:, : id]
-    Wk_ = sorted_vecs[:, : id - 1]
     X_new = np.dot(X_centered, Wk)
-    X_new_ = np.dot(X_centered, Wk_)
-    return X_new, X_new_
+    return X_new
