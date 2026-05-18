@@ -9,7 +9,9 @@ def initialize(X, k):
        - n is the number of data points
        - d is the number of dimensions for each data point
        - k is a positive integer containing the number of clusters'''
-    d = X.shape[1]
+    n, d = X.shape
+    if k > n:
+        return None
     min_val = np.min(X, axis=0)
     max_val = np.max(X, axis=0)
     cluster_centroids = np.random.uniform(low=min_val,
