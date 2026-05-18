@@ -10,6 +10,8 @@ def initialize(X, k):
        - d is the number of dimensions for each data point
        - k is a positive integer containing the number of clusters'''
     n, d = X.shape
+    if isinstance(X, str):
+        return None
     if k > n:
         return None
     min_val = np.min(X, axis=0)
