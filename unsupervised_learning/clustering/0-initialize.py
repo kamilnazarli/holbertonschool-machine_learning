@@ -9,7 +9,7 @@ def initialize(X, k):
        - n is the number of data points
        - d is the number of dimensions for each data point
        - k is a positive integer containing the number of clusters'''
-    if isinstance(X, str):
+    if not isinstance(X, np.ndarray):
         return None
     n, d = X.shape
     if k > n:
