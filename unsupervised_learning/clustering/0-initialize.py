@@ -9,10 +9,10 @@ def initialize(X, k):
        - n is the number of data points
        - d is the number of dimensions for each data point
        - k is a positive integer containing the number of clusters'''
-    if not isinstance(X, np.ndarray):
+    if not (isinstance(X, np.ndarray) and X.ndim == 2):
         return None
     n, d = X.shape
-    if k > n:
+    if not (isinstance(k, int) and k > n):
         return None
     min_val = np.min(X, axis=0)
     max_val = np.max(X, axis=0)
