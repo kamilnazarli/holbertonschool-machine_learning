@@ -51,6 +51,6 @@ def kmeans(X, k, iterations=1000):
                     high=max_val,
                     size=(1, d)))
         if np.all(cluster_centroids == old_c):
-            return
+            return None, None
     return cluster_centroids, clss
         
