@@ -30,9 +30,9 @@ def kmeans(X, k, iterations=1000):
         clss = np.argmin(distances, axis=1)
         old_c = cluster_centroids.copy()
         for j in range(k):
-            if clss == j.sum() > 0:
+            if len(X[clss == j]):
                 cluster_centroids[j, :] = (
-                    np.mean(X[clss == j], axis=0))
+                    np.mean(X[np.where(clss == j)], axis=0))
             else:
                 cluster_centroids[j, :] = (
                     np.random.uniform(low=min_val,
