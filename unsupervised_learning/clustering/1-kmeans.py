@@ -31,10 +31,10 @@ def kmeans(X, k, iterations=1000):
         old_c = cluster_centroids.copy()
         for j in range(k):
             if len(X[clss == j]):
-                cluster_centroids[j, :] = (
+                cluster_centroids[j] = (
                     np.mean(X[np.where(clss == j)], axis=0))
             else:
-                cluster_centroids[j, :] = (
+                cluster_centroids[j] = (
                     np.random.uniform(low=min_val,
                                       high=max_val,
                                       size=(d,)))
