@@ -16,6 +16,10 @@ def initialize(X, k):
         return None
     min_val = np.min(X, axis=0)
     max_val = np.max(X, axis=0)
+    if min_val < 0:
+        min_val = 0
+    if max_val < 0:
+        max_val = 0
     cluster_centroids = np.random.uniform(low=min_val,
                                           high=max_val,
                                           size=(k, d))
