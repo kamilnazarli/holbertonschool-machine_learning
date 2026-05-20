@@ -38,7 +38,7 @@ def kmeans(X, k, iterations=1000):
                     np.random.uniform(low=min_val,
                                       high=max_val,
                                       size=(d,)))
-        if np.all(cluster_centroids == old_c):
+        if np.allclose(cluster_centroids == old_c):
             return cluster_centroids, clss
     return cluster_centroids, clss
         
