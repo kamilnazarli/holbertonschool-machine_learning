@@ -15,6 +15,8 @@ def kmeans(X, k, iterations=1000):
     n, d = X.shape
     if not (isinstance(k, int) and k <= n and k > 0):
         return None, None
+    if not (isinstance(iterations, int) and iterations > 0):
+        return None, None
     min_val = np.min(X, axis=0)
     max_val = np.max(X, axis=0)
     cluster_centroids = np.random.uniform(low=min_val,
@@ -35,7 +37,7 @@ def kmeans(X, k, iterations=1000):
                 cluster_centroids[j, :] = (
                     np.random.uniform(low=min_val,
                                       high=max_val,
-                                      size=(1, d)))
+                                      size=(d, 1)))
         if np.all(cluster_centroids == old_c):
             return cluster_centroids, clss
     return cluster_centroids, clss
