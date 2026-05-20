@@ -12,7 +12,7 @@ def initialize(X, k):
     if not (isinstance(X, np.ndarray) and X.ndim == 2):
         return None
     n, d = X.shape
-    if not (isinstance(k, int) and k > n):
+    if not (isinstance(k, int) and k <= n):
         return None
     min_val = np.min(X, axis=0)
     max_val = np.max(X, axis=0)
