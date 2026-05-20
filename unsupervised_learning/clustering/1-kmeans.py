@@ -28,7 +28,7 @@ def kmeans(X, k, iterations=1000):
         clss = np.argmin(distances, axis=1)
         old_c = cluster_centroids.copy()
         for j in range(1, k + 1):
-            if len(np.where(clss == j)):
+            if len(X[np.where(clss == j)]):
                 cluster_centroids[j, :] = (
                     np.mean(X[np.where(clss == j)], axis=0))
             else:
