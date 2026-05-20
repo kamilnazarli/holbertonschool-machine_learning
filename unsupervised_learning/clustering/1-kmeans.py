@@ -44,4 +44,3 @@ def kmeans(X, k, iterations=1000):
         np.sum((X[:, np.newaxis] - cluster_centroids) ** 2, axis=(2)))
     clss = np.argmin(distances, axis=1)
     return cluster_centroids, clss
-
