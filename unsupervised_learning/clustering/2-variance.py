@@ -14,6 +14,9 @@ def variance(X, C):
     if not (isinstance(C, np.ndarray) and C.ndim == 2):
         return None
     n = X.shape[0]
-    var = np.sum(np.sum((X[:, np.newaxis] - C) ** 2, axis=(2, 0)) / n)
+    distances = np.sqrt(
+        np.sum((X[:, np.newaxis] - C) ** 2, axis=(2)))
+    min_distances = np.min(distances, axis=1)
+    var = np.sum(min_distances, axis=0)
     return var
 
