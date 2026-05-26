@@ -23,7 +23,7 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
         return None, None
     if not (isinstance(kmax, int) and kmax > 0):
         return None, None
-    if kmin > kmax:
+    if kmin >= kmax:
         return None, None
     if not (isinstance(iterations, int) and iterations > 0):
         return None, None
