@@ -15,4 +15,4 @@ def gmm(X, k):
     s = gmm.covariances_
     clss = gmm.predict(X)
     bic = gmm.bic(X)
-    return pi, m, S, clss, bic
+    return pi, m, s, clss, bic
