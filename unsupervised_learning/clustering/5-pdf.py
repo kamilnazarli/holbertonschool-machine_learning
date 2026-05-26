@@ -14,13 +14,16 @@ def pdf(X, m, S):
     '''
     if not (isinstance(X, np.ndarray) and X.ndim == 2):
         return None
+    if not (isinstance(m, np.ndarray) and m.ndim == 2):
+        return None
+    if not (isinstance(S, np.ndarray) and S.ndim == 2):
+        return None
     n, d = X.shape
-
     det = np.linalg.det(S)
     inv = np.linalg.inv(S)
     diff = X - m
     norm_constant = 1 / np.sqrt(((2 * np.pi) ** d) * det)
-    exponent = np.exp(-0.5 * np.sum((diff.T @ inv) * diff, axis=1))
+    exponent = np.exp(-0.5 * np.sum((diff @ inv) * diff, axis=1))
     P = norm_constant * exponent
-    P = np.maximum(P, axis=1)
+    P = np.maximum(P, 1e-300)
     return P
