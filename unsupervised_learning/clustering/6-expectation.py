@@ -23,7 +23,7 @@ def expectation(X, pi, m, S):
     '''
     if not (isinstance(X, np.ndarray) and X.ndim == 2):
         return None, None
-    if not (isinstance(m, np.ndarray) and m.ndim == 1):
+    if not (isinstance(m, np.ndarray) and m.ndim == 2):
         return None, None
     if not (isinstance(S, np.ndarray) and S.ndim == 3):
         return None, None
