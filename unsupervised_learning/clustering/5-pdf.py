@@ -14,7 +14,7 @@ def pdf(X, m, S):
     '''
     if not (isinstance(X, np.ndarray) and X.ndim == 2):
         return None
-    if not (isinstance(m, np.ndarray) and m.ndim == 2):
+    if not (isinstance(m, np.ndarray) and m.ndim == 1):
         return None
     if not (isinstance(S, np.ndarray) and S.ndim == 2):
         return None
