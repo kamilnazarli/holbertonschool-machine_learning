@@ -3,7 +3,7 @@
 import sklearn.mixture
 
 
-def kmeans(X, k):
+def gmm(X, k):
     '''
     - X is a numpy.ndarray of shape (n, d)
     containing the dataset
