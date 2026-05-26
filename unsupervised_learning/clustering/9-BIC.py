@@ -21,7 +21,7 @@ def BIC(X, kmin=1, kmax=None, iterations=1000, tol=1e-5, verbose=False):
     if not (isinstance(X, np.ndarray) and X.ndim == 2):
         return None, None, None, None
     if not (isinstance(kmin, int) and kmin > 0):
-        return None, None, None, NotImplementedError
+        return None, None, None, None
     if not (isinstance(iterations, int) and iterations > 0):
         return None, None, None, None
     if not (isinstance(tol, float) and tol > 0):
