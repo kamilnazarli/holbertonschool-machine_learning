@@ -18,6 +18,13 @@ def pdf(X, m, S):
         return None
     if not (isinstance(S, np.ndarray) and S.ndim == 2):
         return None
+
+    if m.shape != (d,):
+        return None
+
+    if S.shape != (d, d):
+        return None
+    
     n, d = X.shape
     det = np.linalg.det(S)
     inv = np.linalg.inv(S)
