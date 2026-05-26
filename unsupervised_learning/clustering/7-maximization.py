@@ -14,9 +14,9 @@ def maximization(X, g):
         pi, m, S or None, None, None on failure
     """
     if not (isinstance(X, np.ndarray) and X.ndim == 2):
-        return None, None
+        return None, None, None
     if not (isinstance(g, np.ndarray) and g.ndim == 2):
-        return None, None
+        return None, None, None
     n, d = X.shape
     k = g.shape[0]
     if g.shape[1] != n:
