@@ -9,5 +9,5 @@ def kmeans(X, k):
     containing the dataset
     - k is the number of clusters
     '''
-    km = cluster.KMeans(n_clusters=k).fit(X)
+    km = sklearn.cluster.KMeans(n_clusters=k).fit(X)
     return km.cluster_centers_, km.labels_
