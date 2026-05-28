@@ -28,7 +28,7 @@ class GaussianProcess:
         '''
         dist = (X1 - X2.T) ** 2
         # dist = (np.sum(X1 ** 2, 1).reshape(-1, 1) +
-                # np.sum(X2 ** 2, 1) - 2 * np.dot(X1, X2.T))
+        # np.sum(X2 ** 2, 1) - 2 * np.dot(X1, X2.T))
         exponential = np.exp(-dist / (2 * self.l ** 2))
         k_rbf = (self.sigma_f ** 2) * exponential
         return k_rbf
