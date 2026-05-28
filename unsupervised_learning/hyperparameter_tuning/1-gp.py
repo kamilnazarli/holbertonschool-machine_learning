@@ -41,7 +41,7 @@ class GaussianProcess:
         K_inv = np.linalg.inv(self.K)
         K_s = self.kernel(self.X, X_s)
         K_ss = self.kernel(X_s, X_s)
-        mu = K_s.T @ K_inv @ self.Y
+        mu = (K_s.T @ K_inv @ self.Y).reshape(-1)
         cov = K_ss - K_s.T @ K_inv @ K_s
         sigma = np.diag(cov)
         return mu, sigma
