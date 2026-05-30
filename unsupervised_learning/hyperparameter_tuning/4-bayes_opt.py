@@ -55,7 +55,8 @@ class BayesianOptimization:
         mask = sigma > 0
         Z = np.zeros_like(mu)
         Z[mask] = (improvement[mask] / sigma[mask])
-        EI[mask] = (improvement[mask] * norm.cdf(Z[mask]) +
-                    sigma[mask] * norm.pdf(Z[mask]))
+        cdf_m = improvement[mask] * norm.cdf(Z[mask])
+        pdf_m = sigma[mask] * norm.pdf(Z[mask])
+        EI[mask] = cdf_m + pdf_m
         X_next = self.X_s[np.argmax(EI)]
         return X_next, EI
