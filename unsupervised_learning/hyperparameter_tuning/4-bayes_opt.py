@@ -52,10 +52,10 @@ class BayesianOptimization:
             best = np.max(self.gp.Y)
             improvement = mu - best - self.xsi
         EI = np.zeros_like(mu)
-        nonzero_sigma = sigma > 0
+        mask = sigma > 0
         Z = np.zeros_like(mu)
-        Z[nonzero_sigma] = (improvement[nonzero_sigma] / sigma[nonzero_sigma])
-        EI[nonzero_sigma] = (improvement[nonzero_sigma] * norm.cdf(Z[nonzero_sigma])
-                             + sigma[nonzero_sigma] * norm.pdf(Z[nonzero_sigma]))
+        Z[mask] = (improvement[mask] / sigma[mask])
+        EI[mask] = (improvement[mask] * norm.cdf(Z[mask]) +
+                    sigma[mask] * norm.pdf(Z[mask]))
         X_next = self.X_s[np.argmax(EI)]
         return X_next, EI
