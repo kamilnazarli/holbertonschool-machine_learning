@@ -20,22 +20,21 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
         auto: the full autoencoder model
 
     '''
-    encoder = keras.models.Sequential()
     global_input = keras.layers.InputLayer(input_shape=(input_dims,))
-    encoder.add(global_input)
+    x = global_input()
     for layer in hidden_layers:
-        encoder.add(keras.layers.Dense(layer, activation="relu"))
-    encoder.add(keras.layers.Dense(latent_dims, activation="relu"))
+        x = keras.layers.Dense(layer, activation="relu")(x)
+    latent_space = keras.layers.Dense(latent_dims, activation="relu")(x)
+    encoder = keras.models.Model(inputs=global_input, outputs=latent_space)
 
-    decoder = keras.models.Sequential()
-    decoder.add(keras.layers.InputLayer(input_shape=(latent_dims,)))
-    for i, layer in enumerate(hidden_layers[::-1]):
-        decoder.add(keras.layers.Dense(layer, activation="relu"))
-    decoder.add(keras.layers.Dense(input_dims, activation="sigmoid"))
+    y = keras.layers.InputLayer(input_shape=(latent_dims,))
+    for layer in hidden_layers[::-1]:
+        y = keras.layers.Dense(layer, activation="relu")(y)
+    decoder_output = keras.layers.Dense(input_dims, activation="sigmoid")(y)
+    decoder = keras.models.Model(inputs=global_input, outputs="decoder_output")
 
-    compressed = encoder(global_input)
-    final = decoder(compressed)
-    auto = keras.models.Model(inputs=global_input, outputs=final)
+    auto_output = decoder(encoder(global_input))
+    auto = keras.models.Model(inputs=global_input, outputs=auto_output)
     auto.compile(
         optimizer="adam",
         loss="binary_crossentropy"
