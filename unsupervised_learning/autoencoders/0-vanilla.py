@@ -21,7 +21,7 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
 
     '''
     encoder = keras.models.Sequential()
-    global_input = keras.layers.Input(shape=(input_dims,))
+    global_input = keras.layers.InputLayer(shape=(input_dims,))
     encoder.add(global_input)
     for layer in hidden_layers:
         encoder.add(keras.layers.Dense(layer, activation="relu"))
