@@ -29,12 +29,10 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
 
     decoder = keras.models.Sequential()
     decoder.add(keras.layers.Input(shape=(latent_dims,)))
-    decoder.add(keras.layers.Dense(latent_dims, activation="relu"))
     for i, layer in enumerate(hidden_layers[::-1]):
-        if(i != len(hidden_layers) - 1):
-            decoder.add(keras.layers.Dense(layer, activation="relu"))
-        else:
-            decoder.add(keras.layers.Dense(layer, activation="sigmoid"))
+        decoder.add(keras.layers.Dense(layer, activation="relu"))
+    decoder.add(keras.layers.Dense(input_dims, activation="sigmoid"))
+
     compressed = encoder(global_input)
     final = decoder(compressed)
     auto = keras.models.Model(inputs=global_input, outputs=final)
