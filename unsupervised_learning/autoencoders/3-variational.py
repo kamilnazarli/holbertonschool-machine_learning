@@ -47,6 +47,16 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
     _, _, sampled_z = encoder(global_input)
     auto_output = decoder(sampled_z)
     auto = keras.models.Model(inputs=global_input, outputs=auto_output)
+    recon_loss = keras.losses.binary_crossentropy(global_input, auto_output)
+    recon_loss = keras.ops.mean(recon_loss) * input_dims
+
+    # KL Divergence analytic formula calculation
+    kl_loss = -0.5 * keras.ops.sum(1 + z_log_var - keras.ops.square(z_mean) - keras.ops.exp(z_log_var), axis=-1)
+    kl_loss = keras.ops.mean(kl_loss)
+
+    # Combine loss elements and bind them directly to the autoencoder graph
+    vae_loss = recon_loss + kl_loss
+    auto.add_loss(vae_loss)
     auto.compile(
         optimizer="adam",
         loss="binary_crossentropy"
