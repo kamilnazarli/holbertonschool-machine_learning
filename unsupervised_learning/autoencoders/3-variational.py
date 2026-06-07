@@ -3,7 +3,7 @@
 import tensorflow.keras as keras
 
 
-class Sampling(keras.layers.layer):
+class Sampling(keras.layers.Layer):
     def call(self, inputs):
         z_mean, z_log_var = inputs
         batch = keras.shape(z_mean)[0]
@@ -44,8 +44,8 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
         y = keras.layers.Dense(layer, activation="relu")(y)
     decoder_output = keras.layers.Dense(input_dims, activation="sigmoid")(y)
     decoder = keras.models.Model(inputs=decoder_input, outputs=decoder_output)
-
-    auto_output = decoder(encoder(global_input))
+    _, _, sampled_z = encoder(global_input)
+    auto_output = decoder(sampled_z)
     auto = keras.models.Model(inputs=global_input, outputs=auto_output)
     auto.compile(
         optimizer="adam",
