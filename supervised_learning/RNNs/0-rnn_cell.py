@@ -11,7 +11,7 @@ class RNNCell:
         - h is the dimensionality of the hidden state
         - o is the dimensionality of the outputs
         '''
-        self.Wh, self.Wy = (np.random.randn(i, h),
+        self.Wh, self.Wy = (np.random.randn(i + h, h),
                             np.random.randn(h, o))
         self.bh, self.by = (np.zeros((1, h)),
                             np.zeros((1, o)))
@@ -24,7 +24,8 @@ class RNNCell:
         - h_prev is a numpy.ndarray of shape (m, h)
         containing the previous hidden state
         '''
-        h_next = (x_t @ self.Wh + h_prev + self.bh)
+        x_concat = np.concatenate((h_prev, x_t), axis=1)
+        h_next = (x_concat @ self.Wh + self.bh)
         y = self.sigmoid(h_next @ self.Wy + self.by)
         return h_next, y
 
