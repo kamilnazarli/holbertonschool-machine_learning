@@ -26,10 +26,12 @@ class RNNCell:
         '''
         x_concat = np.concatenate((h_prev, x_t), axis=1)
         h_next = (x_concat @ self.Wh + self.bh)
-        y = self.sigmoid(h_next @ self.Wy + self.by)
+        y = self.softmax(h_next @ self.Wy + self.by)
         return h_next, y
 
     @staticmethod
-    def sigmoid(x):
-        '''Sigmoid activation function'''
-        return 1 / (1 + np.exp(-x))
+    def softmax(x, axis=-1):
+        """Softmax activation function"""
+        x_max = np.max(x, axis=axis, keepdims=True)
+        exp_x = np.exp(x - x_max)
+        return exp_x / np.sum(exp_x, axis=axis, keepdims=True)
