@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-'''RNN'''
+'''RNN implementation'''
 import numpy as np
 
 
