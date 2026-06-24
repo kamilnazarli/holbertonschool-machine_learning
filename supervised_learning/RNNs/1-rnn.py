@@ -15,4 +15,4 @@ def rnn(rnn_cell, X, h_0):
         h_next, y = rnn_cell.forward(h_0, x_t)
         H.append(h_next)
         Y.append(y)
-    return H, Y
+    return np.array(H), np.array(Y)
