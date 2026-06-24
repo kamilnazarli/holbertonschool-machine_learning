@@ -11,10 +11,10 @@ class RNNCell:
         - h is the dimensionality of the hidden state
         - o is the dimensionality of the outputs
         '''
-        self.Wh, self.Wy = (np.random.randn(i, h),
-                            np.random.randn(h, o))
-        self.bh, self.by = (np.zeros(1, h),
-                            np.zeros(1, o))
+        self.Wh, self.Wy = (np.random.randn((i, h)),
+                            np.random.randn((h, o)))
+        self.bh, self.by = (np.zeros((1, h)),
+                            np.zeros((1, o)))
 
     def forward(self, h_prev, x_t):
         '''
