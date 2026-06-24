@@ -35,13 +35,13 @@ class GRUCell:
         containing the previous hidden state
         '''
         x_concat = np.concatenate((h_prev, x_t), axis=1)
-        z = self.sigmoid(x_concat @ self.Wz + self.bz) #  (m, h)
-        r = self.sigmoid(x_concat @ self.Wr + self.br) #  (m, h)
+        z = self.sigmoid(x_concat @ self.Wz + self.bz)  # (m, h)
+        r = self.sigmoid(x_concat @ self.Wr + self.br)  # (m, h)
         r_h_prev = r * h_prev
-        cand_concat = np.concatenate((r_h_prev, x_t), axis=1) #  (m, h + i)
-        h_cand = np.tanh(cand_concat @ self.Wh + self.bh) #  (m, h)
-        h_next = (1 - z) * h_prev + z * h_cand #  (m, h)
-        y = self.softmax(h_next @ self.Wy + self.by) #  (m, o)
+        cand_concat = np.concatenate((r_h_prev, x_t), axis=1)  # (m, h + i)
+        h_cand = np.tanh(cand_concat @ self.Wh + self.bh)  # (m, h)
+        h_next = (1 - z) * h_prev + z * h_cand  # (m, h)
+        y = self.softmax(h_next @ self.Wy + self.by)  # (m, o)
         return h_next, y
 
     @staticmethod
