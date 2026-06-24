@@ -25,7 +25,7 @@ class RNNCell:
         containing the previous hidden state
         '''
         x_concat = np.concatenate((h_prev, x_t), axis=1)
-        h_next = (x_concat @ self.Wh + self.bh)
+        h_next = np.tanh(x_concat @ self.Wh + self.bh)
         y = self.softmax(h_next @ self.Wy + self.by)
         return h_next, y
 
